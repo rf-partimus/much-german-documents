@@ -1,0 +1,27 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* much_qweb_updater_account_inventory
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-19 09:29+0000\n"
+"PO-Revision-Date: 2024-01-19 09:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: much_qweb_updater_account_inventory
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_account_inventory.report_invoice_document_din5008_inventory_much
+msgid ""
+"<span>CoO</span>"
+msgstr "<span>CoO</span>"
+
+#. module: much_qweb_updater_account_inventory
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_account_inventory.report_invoice_document_din5008_inventory_much
+msgid "<span>HS Code</span>"
+msgstr "<span>Zolltarifnr</span>"

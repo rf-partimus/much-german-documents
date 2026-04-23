@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_company_form_inherit_updater_sale" model="ir.ui.view">
+        <field name="name">res.company.form.inherit.updater.sale</field>
+        <field name="model">res.company</field>
+        <field name="priority" eval="30"/>
+        <field name="inherit_id" ref="much_qweb_updater.res_company_form_updater_custom"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='print_company']" position="after">
+                <field name="so_print_sale_person" invisible="1"/>
+                <field name="so_print_datev_identifier_customer" invisible="1"/>
+                <field name="taxes_on_line" invisible="1"/>
+                <field name="description_quotation" invisible="1"/>
+                <field name="description_order" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

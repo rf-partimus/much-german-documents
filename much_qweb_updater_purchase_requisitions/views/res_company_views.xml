@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_company_form_inherit_updater_purchase_requisition" model="ir.ui.view">
+        <field name="name">res.company.form.inherit.updater.purchase.requisition</field>
+        <field name="model">res.company</field>
+        <field name="priority" eval="30"/>
+        <field name="inherit_id" ref="much_qweb_updater.res_company_form_updater_custom"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='print_company']" position="after">
+                <field name="requisition_print_buyer_info" invisible="1"/>
+                <field name="print_existing_rfqs" invisible="1"/>
+                <field name="description_requisition" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

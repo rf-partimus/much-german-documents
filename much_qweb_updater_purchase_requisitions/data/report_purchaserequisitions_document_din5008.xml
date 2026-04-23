@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_purchaserequisitions_din5008_much"
+              inherit_id="purchase_requisition.report_purchaserequisition_document">
+        <xpath expr="//t[@t-set='o']" position="after">
+            <t t-set="font" t-value="o.company_id.font or 'Lato'"/>
+            <t t-set="primary"
+               t-value="o.company_id.report_primary_color or '#ea5747'"/>
+            <t t-set="secondary"
+               t-value="o.company_id.report_secondary_color or '#ffffff'"/>
+
+            <style type="text/css">
+                .terms a{
+                    color:<t t-out="primary"/>!important;
+                }
+            </style>
+        </xpath>
+        <xpath expr="//t[@t-set='address']/br" position="replace"/> 
+        <xpath expr="//div[hasclass('row')]" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//h2" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//h2" position="after">
+            <h5 style="font-weight: bold;">
+                <span t-if="o.requisition_type == 'blanket_order'">Blanket Order</span>
+                <span t-if="o.requisition_type != 'blanket_order'" t-out="o.requisition_type"/>
+                <span t-field="o.name"/>
+                <t t-if="o.order_title">
+                    -
+                    <span t-field="o.order_title"/>
+                </t>
+            </h5>
+            <span t-if="o.company_id.description_requisition and o.report_header_text" t-out="o.env.user.get_evaluated_val(o, o.report_header_text)"/>
+        </xpath>
+        <xpath expr="//t[@t-if='o.line_ids']//h3" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='o.line_ids']//thead//tr/th[1]" position="before">
+            <th>
+                <strong>Pos</strong>
+            </th>
+        </xpath>
+        <xpath expr="//tr[@t-foreach='o.line_ids']" position="before">
+            <t t-set="count" t-value="1"/>
+        </xpath>
+        <xpath expr="//tr[@t-foreach='o.line_ids']" position="inside">
+            <t t-if="line_id.product_id" t-set="count" t-value="count+1"/>
+        </xpath>
+        <xpath expr="//tr[@t-foreach='o.line_ids']//td[1]" position="replace">
+            <td t-if="line_id.product_id" name="td_pos" class="text-start ">
+                <span t-out="count"/>
+            </td>
+            <td class="text-start">
+                <t t-if="line_id.product_id">
+                    <span t-field="line_id.product_id.name"/>
+                    <t t-if="line_id.product_description_variants and line_id.product_description_variants != line_id.product_id.name">
+                        <!--custom description exists-->
+                        <br/>
+                        <span t-field="line_id.product_description_variants"/>
+                    </t>
+                </t>
+            </td>
+        </xpath>
+        <xpath expr="//t[@t-if='o.line_ids']//thead" position="attributes">
+            <attribute name="t-att-style">'color: %s; background-color: %s;' % (secondary ,primary) or 'color: #535353;'
+            </attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='o.line_ids']//table" position="attributes">
+            <attribute name="class" add="table-borderless" remove="table-sm" separator=" "/>
+        </xpath>
+        <xpath expr="//th[@groups='uom.group_uom']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//td[@groups='uom.group_uom']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//span[@t-field='line_id.product_qty']/parent:: td" position="replace">
+            <td name="td_quantity" class="text-end">
+                <span t-field="line_id.product_qty"/>
+                <span t-field="line_id.product_uom_id.name" groups="uom.group_uom"/>
+            </td>
+        </xpath>
+        <xpath expr="//t[@t-if='o.line_ids']//thead//th[last()]" position="replace">
+            <th class="text-end">
+                <strong>Full Call off till</strong>
+            </th>
+        </xpath>
+        <xpath expr="//t[@t-if='o.line_ids']/table/thead/tr/th[5]"
+               position="replace">
+            <th t-if="o.requisition_type == 'Blanket Order'"><strong>Unit Price</strong></th>
+        </xpath>
+        <xpath expr="//t[@t-if='o.purchase_ids']//thead" position="attributes">
+            <attribute name="t-att-style">'color: %s !important; background-color: %s !important;' % (secondary ,primary) or 'color: #535353 !important;'
+            </attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='o.purchase_ids']//table" position="attributes">
+            <attribute name="class" add="table-borderless" remove="table-sm" separator=" "/>
+        </xpath>
+        <xpath expr="//t[@t-if='o.purchase_ids']" position="attributes">
+            <attribute name="t-if">o.purchase_ids and o.company_id.print_existing_rfqs</attribute>
+        </xpath>
+        <xpath expr="//span[@t-field='purchase_id.date_order']" position="attributes">
+            <attribute name="t-options">{"widget": "date"}</attribute>
+        </xpath>
+	    <xpath expr="//t[@t-set='address']//span[@t-field='o.vendor_id'][1]" position="replace">
+            <p t-if="o.vendor_id.parent_id" class="m-0">
+		        <t t-out="o.vendor_id.parent_id.name"/>
+	        </p>
+	        <p class="m-0">
+		        <t t-out="o.vendor_id.name"/>
+	        </p>
+			<span t-field="o.vendor_id"
+                t-options='{"widget": "contact", "fields": ["address"], "no_marker": True, "phone_icons": True}'/>
+        </xpath>
+
+        <xpath expr="//t[@t-set='address']//span[@t-field='o.vendor_id'][2]" position="replace"/>
+
+        <xpath expr="//t[@t-set='address']" position="after">
+            <t t-set="din5008_document_information">
+                <div class="information_block" t-if="o and o._name=='purchase.requisition'">
+                    <table class="table-borderless w-100">
+                        <tr t-if="o.reference">
+                            <td>Your Reference:</td>
+                            <td>
+                                <t t-out="o.reference"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.company_id.requisition_print_buyer_info and o.user_id.name">
+                            <td>Buyer:</td>
+                            <td>
+                                <t t-out="o.user_id.name"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.company_id.requisition_print_buyer_info and o.user_id.phone">
+                            <td>Phone:</td>
+                            <td>
+                                <t t-out="o.user_id.phone"/>
+                            </td>
+                        </tr>
+
+                        <tr t-if="o.company_id.requisition_print_buyer_info and o.user_id.login">
+                            <td>Mail:</td>
+                            <td>
+                                <t t-out="o.user_id.login"/>
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

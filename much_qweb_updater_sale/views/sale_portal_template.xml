@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_order_portal_content_inherit_updater" name="Sales Order Portal Template Updater" inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//section[@id='details']//th[@t-if='display_discount']/span" position="replace">
+            <span>Discount</span>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="report_invoice_document_din5008_much" inherit_id="account.report_invoice_document">
+        <xpath expr="//t[@t-set='o']" position="after">
+            <t t-set="font" t-value="o.company_id.font or 'Lato'"/>
+            <t t-set="primary"
+               t-value="o.company_id.report_primary_color or '#ea5747'"/>
+            <t t-set="secondary"
+               t-value="o.company_id.report_secondary_color or '#ffffff'"/>
+
+            <style type="text/css">
+                .terms a{
+                color:<t t-out="primary"/>!important;
+                }
+                [name=invoice_line_table] th {
+                color:<t t-out="secondary"/>!important;
+                background:<t t-out="primary"/>!important;
+                }
+            </style>
+        </xpath>
+        <xpath expr="//div[hasclass('invoice_main')]/div[hasclass('mb-4')]/t" position="after">
+            <h5 class="mt-3" style="font-weight: bold;">
+                <span t-if="o.move_type == 'out_invoice' and o.state == 'posted'">
+                    Invoice
+                </span>
+                <span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">
+                    Draft Invoice
+                </span>
+                <span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">
+                    Cancelled Invoice
+                </span>
+                <span t-if="o.move_type == 'out_refund'">Credit Note</span>
+                <span t-if="o.move_type == 'in_refund'">Vendor Credit Note
+                </span>
+                <span t-if="o.move_type == 'in_invoice'">Vendor Bill</span>
+                <span t-if="o.name != '/'" t-field="o.name"/>
+                <t t-if="o.order_title">
+                    -
+                    <span t-field="o.order_title"/>
+                </t>
+            </h5>
+            <span t-if="o.report_header_text"
+                  t-out="o.env.user.get_evaluated_val(o, o.report_header_text)"/>
+        </xpath>
+        <xpath expr="//t[@t-foreach='lines_to_report']" position="before">
+            <t t-set="count" t-value="0"/>
+        </xpath>
+        <t t-set="is_product" position="before">
+            <t t-set="count" t-value="count+1"/>
+        </t>
+        <xpath expr="//th[@name='th_description']" position="before">
+            <th name="th_position" class="text-start ">
+                Pos.
+            </th>
+        </xpath>
+        <td name="account_invoice_line_name" position="before">
+            <td name="account_invoice_line_pos" class="text-start">
+                <span t-out="count"/>
+            </td>
+        </td>
+        <td name="account_invoice_line_name_grouped_desktop" position="before">
+            <td name="account_invoice_line_pos_grouped" class="text-start">
+                <span t-out="count"/>
+            </td>
+        </td>
+        <xpath expr="//p[@name='payment_communication']" position="attributes">
+            <attribute name="t-if">o.company_id.print_payment_ref</attribute>
+        </xpath>
+        <xpath expr="//p[@name='payment_communication']/parent:: div" position="after">
+            <div class="mb-2 d-inline-flex text-nowrap" t-if="o.company_id.print_time_frame and (o.delivery_start_date or o.delivery_end_date) and o.move_type in ['out_invoice', 'in_invoice']">
+                <span>This invoice covers the following period:</span><span t-translation="off">&#160;</span>
+                <span t-if="o.delivery_start_date and o.delivery_end_date and o.delivery_start_date != o.delivery_end_date"
+                      class="m-0 text-nowrap">
+                    <span class="text-end d-inline"
+                          t-out="o.delivery_start_date"
+                          t-options="{'widget': 'date'}"/>
+                    to
+                    <span class="text-end d-inline"
+                          t-out="o.delivery_end_date"
+                          t-options="{'widget': 'date'}"/>
+                </span>
+                <span t-elif="o.delivery_start_date and o.delivery_end_date and o.delivery_start_date == o.delivery_end_date"
+                      class="m-0 text-nowrap">
+                    <span class="text-end d-inline"
+                          t-out="o.delivery_start_date"
+                          t-options="{'widget': 'date'}"/>
+                </span>
+                <span t-elif="o.delivery_start_date and not o.delivery_end_date"
+                      class="m-0">
+                    <span t-out="o.delivery_start_date"
+                          t-options="{'widget': 'date'}"/>
+                </span>
+                <span t-elif="not o.delivery_start_date and o.delivery_end_date"
+                      class="m-0">
+                    <span t-out="o.delivery_end_date"
+                          t-options="{'widget': 'date'}"/>
+                </span>
+            </div>
+        </xpath>
+        <xpath expr="//th[@name='th_discount']" position="replace">
+            <th name="th_discount" t-if="display_discount"
+                t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                <span>Disc.%</span>
+            </th>
+        </xpath>
+        <xpath expr="//div[@name='shipping_address_block']//div[@t-field='o.partner_shipping_id']" position="replace">
+            <p t-if="o.partner_shipping_id.parent_id" class="m-0">
+                <t t-out="o.partner_shipping_id.parent_id.name"/>
+            </p>
+            <p class="m-0">
+                <t t-out="o.partner_shipping_id.name"/>
+            </p>
+            <div t-field="o.partner_shipping_id"
+                 t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+        </xpath>
+        <xpath expr="//div[@name='address_not_same_as_shipping']//t[@t-set='address']//address[@t-field='o.partner_id']"
+               position="replace">
+            <p t-if="o.partner_id.parent_id" class="m-0">
+                <t t-out="o.partner_id.parent_id.name"/>
+            </p>
+            <p class="m-0">
+                <t t-out="o.partner_id.name"/>
+            </p>
+            <address class="mb-0" t-field="o.partner_id"
+                     t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+        </xpath>
+        <xpath expr="//div[@name='address_same_as_shipping']//t[@t-set='address']//address[@t-field='o.partner_id']"
+               position="replace">
+            <p t-if="o.partner_id.parent_id" class="m-0">
+                <t t-out="o.partner_id.parent_id.name"/>
+            </p>
+            <p class="m-0">
+                <t t-out="o.partner_id.name"/>
+            </p>
+            <address class="mb-0" t-field="o.partner_id"
+                     t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+        </xpath>
+        <xpath expr="//div[@name='no_shipping']//t[@t-set='address']//address[@t-field='o.partner_id']"
+               position="replace">
+            <p t-if="o.partner_id.parent_id" class="m-0">
+                <t t-out="o.partner_id.parent_id.name"/>
+            </p>
+            <p class="m-0">
+                <t t-out="o.partner_id.name"/>
+            </p>
+            <address class="mb-0" t-field="o.partner_id"
+                     t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+        </xpath>
+        <xpath expr="//t[@t-foreach='lines_to_report']" position="before">
+            <!-- with POS introduced extra colspan default to 1 to be extended by other modules-->
+            <t t-set="extra_colspan" t-value="1"/>
+        </xpath>
+        <td name="line_name_td" position="attributes">
+            <attribute name="t-att-colspan">(1 if is_product else 6 if display_discount else 5) - line_colspan + extra_colspan</attribute>
+        </td>
+    </template>
+
+
+    <template id="report_invoice_document_l10n_din5008_much" inherit_id="l10n_din5008.report_invoice_document">
+        <xpath expr="//div[hasclass('information_block')]/table" position="attributes">
+            <attribute name="class" add="table-borderless w-100" separator=" "/>
+        </xpath>
+        <xpath expr="//tr[@t-if='o.invoice_incoterm_id']" position="replace">
+            <tr t-if="o.invoice_incoterm_id and o.company_id.print_incoterm">
+                <td>Incoterm</td>
+                <td t-if="o.incoterm_location">
+                    <span t-out="o.invoice_incoterm_id.code"/> - <span t-out="o.incoterm_location"/>
+                </td>
+                <td t-else="" t-out="o.invoice_incoterm_id.code"/>
+            </tr>
+        </xpath>
+        <xpath expr="//tr[@t-if=&quot;o.partner_id.commercial_partner_id == o.partner_id and o.partner_id.commercial_partner_id.vat&quot;]" position="replace"/>
+        <xpath expr="//tr[@t-if='o.delivery_date']" position="after">
+            <tr t-if="o.invoice_user_id and o.company_id.print_sale_person">
+                <td>Sales Person:</td>
+                <td>
+                    <t t-out="o.invoice_user_id.name"/>
+                </td>
+            </tr>
+            <tr t-if="o.invoice_user_id.phone and o.company_id.print_sale_person">
+                <td>Phone:</td>
+                <td>
+                    <t t-out="o.invoice_user_id.phone"/>
+                </td>
+            </tr>
+
+            <tr t-if="o.invoice_user_id.login and o.company_id.print_sale_person">
+                <td>Mail:</td>
+                <td>
+                    <t t-out="o.invoice_user_id.login"/>
+                </td>
+            </tr>
+        </xpath>
+        <xpath expr="//div[hasclass('information_block')]/table" position="inside">
+            <tr t-if="o.company_id.invoice_print_datev_identifier_customer">
+                <t t-if="'l10n_de_datev_supplier_identifier' in o.partner_id._fields">
+                    <!-- This means that the datev module is installed -->
+                    <t t-set="datev_customer_identifier" t-value="o.partner_id.parent_id.l10n_de_datev_identifier or o.partner_id.l10n_de_datev_identifier"/>
+                </t>
+                <t t-else="">
+                    <t t-set="datev_customer_identifier" t-value="o.partner_id.parent_id.l10n_de_datev_identifier_customer or o.partner_id.l10n_de_datev_identifier_customer"/>
+                </t>
+                <t t-if="datev_customer_identifier != 0">
+                    <td>Your Customer Reference:</td>
+                    <td>
+                        <t t-out="datev_customer_identifier"/>
+                    </td>
+                </t>
+            </tr>
+        </xpath>
+        <xpath expr="//t[@t-set='din5008_address_block']" position="replace">
+            <t t-set="din5008_address_block">
+                <t t-if="o and o._name=='account.move'">
+                    <t t-set="commercial_partner" t-value="o.commercial_partner_id"/>
+                    <t t-set="invoice_partner" t-value="o.partner_id"/>
+                    <t t-set="delivery_partner" t-value="o.partner_shipping_id"/>
+
+                    <tr t-if="o.company_id.print_shipping_address and delivery_partner and delivery_partner != invoice_partner">
+                        <td class="shipping_address">
+                            <span class="fw-bold">Shipping Address:</span>
+                            <p class="m-0">
+                                <t t-if="o.company_id.print_shipping_address_display_name">
+                                    <t t-if="delivery_partner.id != delivery_partner.commercial_partner_id.id">
+                                        <t t-out="delivery_partner.commercial_partner_id.name"/>
+                                        <br/>
+                                    </t>
+                                    <t t-out="delivery_partner.name"/>
+                                </t>
+                                <t t-else="" t-out="delivery_partner.name"/>
+                            </p>
+                            <address class="mb-0" t-field="o.partner_shipping_id"
+                                     t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+                        </td>
+                    </tr>
+                </t>
+
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Fix DIN5008 VAT display condition to show VAT for both individuals and companies -->
+    <template id="external_layout_din5008_account_move_much" inherit_id="l10n_din5008.external_layout_din5008_account_move">
+        <xpath expr="//t[@t-if=&quot;o and o._name == 'account.move' and o.partner_id&quot;]/t" position="inside">
+            <div t-if="o.partner_id.commercial_partner_id.vat" id="partner_address_vat_display">
+                <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-out="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                <t t-else="">Tax ID</t>: <span t-field="o.partner_id.commercial_partner_id.vat"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>

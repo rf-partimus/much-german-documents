@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_company_form_updater_custom" model="ir.ui.view">
+            <field name="name">res.company.form.updater.custom</field>
+            <field name="model">res.company</field>
+            <field name="priority" eval="30"/>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_registry']" position="after">
+                    <field name="report_primary_color" widget="color" readonly="0"/>
+					<field name="report_secondary_color" widget="color" readonly="0"/>
+                    <field name="free_text_footer" invisible="1"/>
+                    <field name="column_1" invisible="1"/>
+                    <field name="column_2" invisible="1"/>
+                    <field name="column_3" invisible="1"/>
+                    <field name="column_4" invisible="1"/>
+                    <field name="logo_width_unit" invisible="1"/>
+                    <field name="logo_width" invisible="1"/>
+                    <field name="logo_height_unit" invisible="1"/>
+                    <field name="logo_height" invisible="1"/>
+                    <field name="free_text_footer" invisible="1"/>
+                    <field name="print_company" invisible="1"/>
+                    <field name="adjust_logo" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

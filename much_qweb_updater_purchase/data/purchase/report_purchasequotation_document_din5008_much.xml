@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="report_purchasequotation_document_din5008_much"
+              inherit_id="purchase.report_purchasequotation_document">
+        <xpath expr="//t[@t-set='o']" position="after">
+            <t t-set="font" t-value="o.company_id.font or 'Lato'"/>
+            <t t-set="primary"
+               t-value="o.company_id.report_primary_color or '#ea5747'"/>
+            <t t-set="secondary"
+               t-value="o.company_id.report_secondary_color or '#ffffff'"/>
+
+            <style type="text/css">
+                .terms a{
+                color:<t t-out="primary"/>!important;
+                }
+                table th {
+                color:<t t-out="secondary"/>!important;
+                background:<t t-out="primary"/>!important;
+                }
+            </style>
+        </xpath>
+        <xpath expr="//t[@t-set='layout_document_title']" position="after">
+            <h5 style="font-weight: bold;">
+                Request for Quotation
+                <span t-field="o.name"/>
+                <t t-if="o.order_title">
+                    -
+                    <span t-field="o.order_title"/>
+                </t>
+            </h5>
+            <span t-if="o.report_header_text" t-out="o.env.user.get_evaluated_val(o, o.report_header_text)"/>
+        </xpath>
+        <xpath expr="//th[@name='th_description']" position="before">
+            <th name="th_postion" class="text-start ">
+                <strong>Pos</strong>
+            </th>
+        </xpath>
+        <xpath expr="//t[@t-as='order_line']" position="before">
+            <t t-set="count" t-value="0"/>
+        </xpath>
+        <xpath expr="//t[@t-as='order_line']//tr[1]" position="before">
+            <t t-if="not order_line.display_type" t-set="count" t-value="count+1"/>
+        </xpath>
+        <xpath expr="//td[@id='product']" position="before">
+            <td name="td_pos" class="text-start ">
+                <span t-out="count"/>
+            </td>
+        </xpath>
+        <xpath expr="//table" position="attributes">
+            <attribute name="class" add="table-borderless" remove="table-sm" separator=" "/>
+        </xpath>
+        <xpath expr="//span[@t-field='order_line.date_planned']" position="attributes">
+            <attribute name="t-options">{"widget": "date"}</attribute>
+        </xpath>
+        <xpath expr="//t[@t-set='address']//div[@t-field='o.partner_id']" position="replace">
+            <p t-if="o.partner_id.parent_id" class="m-0">
+                <t t-out="o.partner_id.parent_id.name"/>
+            </p>
+            <p class="m-0">
+                <t t-out="o.partner_id.name"/>
+            </p>
+            <div t-field="o.partner_id"
+                 t-options='{"widget": "contact", "fields": ["address", "vat"], "no_marker": True, "phone_icons": True}'/>
+        </xpath>
+
+        <xpath expr="//t[@t-set='address']" position="after">
+            <t t-set="din5008_document_information">
+                <div class="information_block" t-if="o and o._name=='purchase.order'">
+                    <table class="table-borderless w-100">
+                        <tr t-if="o.name">
+                            <td t-if="o.state == 'draft'">Request for Quotation No.:</td>
+                            <td t-elif="o.state in {'sent', 'to approve', 'purchase', 'done'}">Purchase Order No.:</td>
+                            <td t-elif="o.state == 'cancel'">Cancelled Purchase Order No.:</td>
+                            <td>
+                                <t t-out="o.name"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.user_id">
+                            <td>Purchase Representative:</td>
+                            <td>
+                                <t t-out="o.user_id.name"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.company_id.print_buyer_info and o.user_id.phone">
+                            <td>Phone:</td>
+                            <td>
+                                <t t-out="o.user_id.phone"/>
+                            </td>
+                        </tr>
+
+                        <tr t-if="o.company_id.print_buyer_info and o.user_id.email">
+                            <td>Mail:</td>
+                            <td>
+                                <t t-out="o.user_id.email"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.partner_ref">
+                            <td>Order Reference:</td>
+                            <td>
+                                <t t-out="o.partner_ref"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.date_approve">
+                            <td>Order Date:</td>
+                            <td>
+                                <t t-out="o.date_approve" t-options="{'widget': 'date'}"/>
+                            </td>
+                        </tr>
+                        <tr t-elif="o.date_order">
+                            <td>Order Deadline:</td>
+                            <td>
+                                <t t-out="o.date_order" t-options="{'widget': 'date'}"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.incoterm_id">
+                            <td>Incoterm:</td>
+                            <td>
+                                <t t-out="o.incoterm_id"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.company_id.purchase_print_datev_identifier">
+                            <t t-if="'l10n_de_datev_supplier_identifier' in o.partner_id._fields">
+                                <!-- This means that the datev module is installed -->
+                                <t t-set="datev_supplier_identifier" t-value="o.partner_id.parent_id.l10n_de_datev_supplier_identifier or o.partner_id.l10n_de_datev_supplier_identifier"/>
+                            </t>
+                            <t t-else="">
+                                <t t-set="datev_supplier_identifier" t-value="o.partner_id.parent_id.l10n_de_datev_identifier or o.partner_id.l10n_de_datev_identifier"/>
+                            </t>
+                            <t t-if="datev_supplier_identifier != 0">
+                                <td>Your Supplier Reference:</td>
+                                <td>
+                                    <t t-out="datev_supplier_identifier"/>
+                                </td>
+                            </t>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

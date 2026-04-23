@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale_order_template_view_form_much_din5008" model="ir.ui.view">
+        <field name="name">sale.order.template.form.much.din5008</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_form"/>
+        <field name="model">sale.order.template</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='order_lines']" position='after'>
+                <page string="Other Info" name="other_information">
+                    <group>
+                        <group>
+                            <field name="order_title"/>
+                        </group>
+                    </group>
+                    <label for="report_header_text"/>
+                    <field name="report_header_text" placeholder="Add a description before table..." nolabel="1"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_much_updater" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.much.updater</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="31"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Qweb Updater" string="Qweb Updater" name="much_qweb_updater">
+                    <block title="Much Qweb Updater" name="qweb_updater">
+                        <setting id="setting_free_text_footer"
+                                 help="Allow to configure footer for reports">
+                            <field name="free_text_footer"/>
+                            <div class="custom-footer-group" invisible="not free_text_footer">
+                                <div class="row">
+                                    <label string="Font Size" for="footer_font_size"
+                                           class="col-lg-3 o_light_label"/>
+                                    <div class="col-lg-auto content-group">
+                                        <field name="footer_font_size"
+                                               class="text-center oe_inline"/>
+                                        px
+                                    </div>
+                                </div>
+                                <div class="row mt16">
+                                    <label for="column_1" class="col-lg-3 o_light_label"/>
+                                    <field name="column_1"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label for="column_2" class="col-lg-3 o_light_label"/>
+                                    <field name="column_2"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label for="column_3" class="col-lg-3 o_light_label"/>
+                                    <field name="column_3"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label for="column_4" class="col-lg-3 o_light_label"/>
+                                    <field name="column_4"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting id="setting_print_company" help="For print the country in the company address for reports">
+                            <field name="print_company"/>
+                        </setting>
+                        <setting id="setting_company_logo">
+                            <field name="adjust_logo"/>
+                            <div class="logo-width content-group" invisible="not adjust_logo">
+                                <label for="logo_width" string="Logo Width" class="col-lg-3 o_light_label"/>
+                                <field name="logo_width"
+                                       class="text-center oe_inline" style="width: 20px;"/>
+                                <field name="logo_width_unit" nolabel="1" style="width: 20px;"/>
+                            </div>
+                            <div class="logo-height content-group" invisible="not adjust_logo">
+                                <label for="logo_height" string="Logo Height" class="col-lg-3 o_light_label"/>
+                                <field name="logo_height"
+                                       class="text-center oe_inline" style="width: 20px;"/>
+                                <field name="logo_height_unit" nolabel="1" style="width: 20px;"/>
+                            </div>
+	                        <div class="content-group" invisible="not adjust_logo">
+                                <div class="mt8">
+	                                <span class="text-muted">If you logo is overlapping then adjust the fields ('Header spacing', 'Top Margin (mm)') in paper-format</span>
+                                </div>
+		                        <div class="mt8">
+			                        <button name="edit_paper_format" string="Edit Paperformat" type="object" class="oe_link" icon="oi-arrow-right"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

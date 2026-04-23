@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_much_updater_account" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.much.updater.account</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="much_qweb_updater.res_config_settings_view_form_much_updater"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='much_qweb_updater']" position="inside">
+                <block title="Much Qweb Updater Account" name="qweb_updater_account">
+                    <setting id="setting_print_sale_person">
+                        <field name="print_sale_person"/>
+                    </setting>
+                    <setting id="setting_block_condition">
+                        <field name="block_condition"/>
+                    </setting>
+                    <setting id="setting_print_payment_ref">
+                        <field name="print_payment_ref"/>
+                    </setting>
+                    <setting id="setting_print_time_frame">
+                        <field name="print_time_frame"/>
+                        <string invisible="not print_time_frame">
+                            The field values will be set automatically going forward. Please be aware that records created prior to this change are not affected and will require manual data entry.
+                        </string>
+                    </setting>
+                    <setting id="setting_print_incoterm">
+                        <field name="print_incoterm"/>
+                    </setting>
+                    <setting id="setting_ac_print_coo">
+                        <field name="ac_print_coo"/>
+                    </setting>
+                    <setting id="setting_ac_print_hs_code">
+                        <field name="ac_print_hs_code"/>
+                    </setting>
+	                <setting id="invoice_print_datev_identifier_customer">
+                        <field name="invoice_print_datev_identifier_customer"/>
+                    </setting>
+	                <setting id="print_shipping_address">
+						<field name="print_shipping_address"/>
+						<setting id="print_shipping_address_display_name" invisible="not print_shipping_address">
+						    <field name="print_shipping_address_display_name"/>
+						</setting>
+                    </setting>
+                    <setting id="setting_description_inv">
+                        <field name="description_inv"/>
+                    </setting>
+                    <setting id="setting_description_credit_note">
+                        <field name="description_credit_note"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

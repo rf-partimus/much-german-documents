@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_requisition_form_much_din5008" model="ir.ui.view">
+        <field name="name">purchase.requisition.form.much.din5008</field>
+        <field name="model">purchase.requisition</field>
+        <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='products']" position="after">
+                <page name="other_info" string="Other Information">
+                    <group>
+                        <group>
+                            <field name="order_title"/>
+                        </group>
+                    </group>
+                    <label for="report_header_text"/>
+                    <field name="report_header_text"
+                           placeholder="Add a description before table..." nolabel="1"
+                           height="50"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

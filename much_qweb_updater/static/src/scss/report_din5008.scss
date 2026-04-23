@@ -1,0 +1,19 @@
+.din_page {
+    &.invoice_note {
+        tr {
+            td {
+                vertical-align: top;
+            }
+            &:nth-child(2) td {
+                vertical-align: top;
+            }
+        }
+        .page {
+            tr {
+                td {
+                    vertical-align: top;
+                }
+            }
+        }
+    }
+}

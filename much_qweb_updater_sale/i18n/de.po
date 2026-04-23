@@ -1,0 +1,195 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* much_qweb_updater_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-22 10:53+0000\n"
+"PO-Revision-Date: 2024-11-22 10:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_sale_order_doc_din5008_much
+msgid "<span>Disc.%</span>"
+msgstr "<span>Rab.%</span>"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.sale_order_portal_content_inherit_updater
+msgid "<span>Discount</span>"
+msgstr "<span>Rabatt</span>"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_sale_order_doc_din5008_much
+msgid "<span>Pro-Forma Invoice</span>"
+msgstr "<span>Pro-Forma Rechnung</span>"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.sale_order_form_much_din5008
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.sale_order_template_view_form_much_din5008
+msgid "Add a description before table..."
+msgstr "Beschreibung vor der Tabelle hinzufügen..."
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_saleorder_document_l10n_din5008_much
+msgid "Beneficiary:"
+msgstr "Begünstigter:"
+
+#. module: much_qweb_updater_sale
+#: model:ir.model,name:much_qweb_updater_sale.model_res_company
+msgid "Companies"
+msgstr "Unternehmen"
+
+#. module: much_qweb_updater_sale
+#: model:ir.model,name:much_qweb_updater_sale.model_res_config_settings
+msgid "Config Settings"
+msgstr "Konfigurationseinstellungen"
+
+#. module: much_qweb_updater_sale
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_res_company__description_order
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_res_config_settings__description_order
+msgid "Default Description before Table Order"
+msgstr "Standard Beschreibung vor Tabelle Auftrag"
+
+#. module: much_qweb_updater_sale
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_res_company__description_quotation
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_res_config_settings__description_quotation
+msgid "Default Description before Table Quotation"
+msgstr "Standard Beschreibung vor Tabelle Angebot"
+
+#. module: much_qweb_updater_sale
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_sale_order__report_header_text
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_sale_order_template__report_header_text
+msgid "Description before Table"
+msgstr "Beschreibung vor Tabelle"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_sale_order_doc_din5008_much
+msgid "Invoicing Address"
+msgstr "Rechnungsadresse"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_saleorder_document_l10n_din5008_much
+msgid "Invoicing Address:"
+msgstr "Rechnungsadresse:"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_sale_order_doc_din5008_much
+msgid "Invoicing and Shipping Address"
+msgstr "Rechnungs- und Lieferadresse"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_saleorder_document_l10n_din5008_much
+msgid "Invoicing and Shipping Address:"
+msgstr "Rechnungs- und Lieferadresse:"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_saleorder_document_l10n_din5008_much
+msgid "Mail:"
+msgstr "E-Mail:"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.res_config_settings_view_form_much_updater_sale
+msgid "Much Qweb Updater Sale"
+msgstr ""
+
+#. module: much_qweb_updater_sale
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_res_company__option_table_text
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_res_config_settings__option_table_text
+msgid "Option Table Text"
+msgstr "Optionstabellen Text"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_sale_order_doc_din5008_much
+msgid "Order"
+msgstr "Auftrag"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_sale_order_doc_din5008_much
+msgid "Order Confirmation"
+msgstr "Auftragsbestätigung"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.sale_order_template_view_form_much_din5008
+msgid "Other Info"
+msgstr "Weitere Informationen"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_saleorder_document_l10n_din5008_much
+msgid "Phone:"
+msgstr "Telefon:"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_sale_order_doc_din5008_much
+msgid "Pos"
+msgstr ""
+
+#. module: much_qweb_updater_sale
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_res_company__so_print_datev_identifier_customer
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_res_config_settings__so_print_datev_identifier_customer
+msgid "Print Datev Identifier Customer"
+msgstr "Debitorennummer andrucken"
+
+#. module: much_qweb_updater_sale
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_res_company__so_print_sale_person
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_res_config_settings__so_print_sale_person
+msgid "Print Sales Person Info"
+msgstr "Verkäuferinformationen andrucken"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_sale_order_doc_din5008_much
+msgid "Quotation"
+msgstr "Angebot"
+
+#. module: much_qweb_updater_sale
+#: model:ir.model,name:much_qweb_updater_sale.model_sale_order_template
+msgid "Quotation Template"
+msgstr "Angebotsvorlage"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_sale_order_inherit_sale_management
+msgid "Recommended Quantity"
+msgstr "Empfohlene Menge"
+
+#. module: much_qweb_updater_sale
+#: model:ir.model,name:much_qweb_updater_sale.model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_sale_order_doc_din5008_much
+msgid "Shipping Address"
+msgstr "Lieferadresse"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_saleorder_document_l10n_din5008_much
+msgid "Shipping Address:"
+msgstr "Lieferadresse:"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_sale_order_inherit_sale_management
+msgid "Tax ID"
+msgstr "USt IdNr"
+
+#. module: much_qweb_updater_sale
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_res_company__taxes_on_line
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_res_config_settings__taxes_on_line
+msgid "Taxes on Line Level"
+msgstr "Steuern auf Positionsebene"
+
+#. module: much_qweb_updater_sale
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_sale_order__order_title
+#: model:ir.model.fields,field_description:much_qweb_updater_sale.field_sale_order_template__order_title
+msgid "Title of the order"
+msgstr "Titel des Auftrages"
+
+#. module: much_qweb_updater_sale
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_sale.report_saleorder_document_l10n_din5008_much
+msgid "Your Customer Reference:"
+msgstr "Ihre Kundennummer:"

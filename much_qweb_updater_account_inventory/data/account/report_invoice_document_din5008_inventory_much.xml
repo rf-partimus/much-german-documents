@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="report_invoice_document_din5008_inventory_much" inherit_id="account.report_invoice_document">
+        <t t-set="display_taxes" position="after">
+            <t t-set="display_hscode" t-value="any([rec.product_id.hs_code for rec in o.invoice_line_ids]) and o.company_id.ac_print_hs_code"/>
+            <t t-set="display_co" t-value="any([rec.product_id.country_of_origin for rec in o.invoice_line_ids]) and o.company_id.ac_print_coo"/>
+        </t>
+        <xpath expr="//th[@name='th_quantity']" position="before">
+            <th t-if="display_hscode" name="th_hs_code" class="text-end ">
+                <span>HS Code</span>
+            </th>
+            <th t-if="display_co" name="th_country" class="text-end ">
+                <span>CoO</span>
+            </th>
+        </xpath>
+        <xpath expr="//td[@name='td_quantity']" position="before">
+            <td class="text-end " t-if="display_hscode">
+                <span t-if="line.product_id.hs_code" t-out="line.product_id.hs_code"/>
+                <span t-else=""/>
+            </td>
+            <td class="text-end " t-if="display_co">
+                <span t-if="line.product_id.country_of_origin.code" t-out="line.product_id.country_of_origin.code"/>
+                <span t-else=""/>
+            </td>
+        </xpath>
+    </template>
+
+    <template id="report_invoice_document_din5008_much" inherit_id="much_qweb_updater_account.report_invoice_document_din5008_much">
+        <t t-set="extra_colspan" position="attributes">
+            <!-- default POS (1) with possible hscode / co0 columns-->
+            <attribute name="t-value">1 + (display_co and 1 or 0) + (display_hscode and 1 or 0)</attribute>
+        </t>
+    </template>
+</odoo>

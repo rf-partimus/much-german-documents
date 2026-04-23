@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_much_updater_purchase_requisition" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.much.updater.purchase.requisition</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="much_qweb_updater.res_config_settings_view_form_much_updater"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='much_qweb_updater']" position="inside">
+                <block title="Much Qweb Updater Purchase Requisition" name="qweb_updater_purchase_requisition">
+                    <setting id="setting_requisition_print_buyer_info">
+                        <field name="requisition_print_buyer_info"/>
+                    </setting>
+                    <setting id="setting_print_existing_rfqs">
+                        <field name="print_existing_rfqs"/>
+                    </setting>
+                    <setting id="setting_description_requisition">
+                        <field name="description_requisition"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

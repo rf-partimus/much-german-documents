@@ -1,0 +1,146 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* much_qweb_updater_inventory
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-01 13:09+0000\n"
+"PO-Revision-Date: 2024-02-01 13:09+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: much_qweb_updater_inventory
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_inventory.report_delivery_document_din5008_much
+msgid "<span><strong>Delivery Address:</strong></span>"
+msgstr "<span><strong>Lieferadresse:</strong></span>"
+
+#. module: much_qweb_updater_inventory
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_inventory.report_delivery_document_din5008_much
+msgid "<span>Delivery Slip</span>"
+msgstr "<span>Lieferschein</span>"
+
+#. module: much_qweb_updater_inventory
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_inventory.report_delivery_document_din5008_much
+msgid "<span>Weight per piece</span>"
+msgstr "<span>Gewicht pro Stück</span>"
+
+#. module: much_qweb_updater_inventory
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_inventory.view_stock_picking_much_updater
+msgid "Add a description before table..."
+msgstr "Beschreibung vor der Tabelle hinzufügen..."
+
+#. module: much_qweb_updater_inventory
+#: model:ir.model,name:much_qweb_updater_inventory.model_res_company
+msgid "Companies"
+msgstr "Unternehmen"
+
+#. module: much_qweb_updater_inventory
+#: model:ir.model,name:much_qweb_updater_inventory.model_res_config_settings
+msgid "Config Settings"
+msgstr "Konfigurationseinstellungen"
+
+#. module: much_qweb_updater_inventory
+#. odoo-python
+#: code:addons/much_qweb_updater_inventory/models/stock_picking.py:0
+#, python-format
+msgid "Customer Reference:"
+msgstr "Kundenreferenz:"
+
+#. module: much_qweb_updater_inventory
+#: model:ir.model.fields,field_description:much_qweb_updater_inventory.field_res_company__description_delivery
+#: model:ir.model.fields,field_description:much_qweb_updater_inventory.field_res_config_settings__description_delivery
+msgid "Default Description before Table Delivery"
+msgstr "Standard Beschreibung vor Tabelle Lieferung"
+
+#. module: much_qweb_updater_inventory
+#: model:ir.model.fields,field_description:much_qweb_updater_inventory.field_stock_picking__order_title
+msgid "Delivery Title"
+msgstr "Lieferauftrag Titel"
+
+#. module: much_qweb_updater_inventory
+#: model:ir.model.fields,field_description:much_qweb_updater_inventory.field_stock_picking__report_header_text
+msgid "Description before Table"
+msgstr "Beschreibung vor Tabelle"
+
+#. module: much_qweb_updater_inventory
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_inventory.report_delivery_document_din5008_much
+msgid "Document Address:"
+msgstr "Dokumentenadresse:"
+
+#. module: much_qweb_updater_inventory
+#: model:ir.model.fields,field_description:much_qweb_updater_inventory.field_stock_picking__document_address_id
+msgid "Document Address"
+msgstr "Dokumentenadresse"
+
+#. module: much_qweb_updater_inventory
+#. odoo-python
+#: code:addons/much_qweb_updater_inventory/models/stock_picking.py:0
+#, python-format
+msgid "Incoterm:"
+msgstr "Lieferbedingung:"
+
+#. module: much_qweb_updater_inventory
+#: model:ir.model.fields,field_description:much_qweb_updater_inventory.field_stock_picking__l10n_din5008_template_data
+msgid "L10N Din5008 Template Data"
+msgstr ""
+
+#. module: much_qweb_updater_inventory
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_inventory.res_config_settings_view_form_much_updater_inventory
+msgid "Much Qweb Updater Inventory"
+msgstr ""
+
+#. module: much_qweb_updater_inventory
+#. odoo-python
+#: code:addons/much_qweb_updater_inventory/models/stock_picking.py:0
+#, python-format
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_inventory.report_delivery_document_din5008_much
+msgid "Order:"
+msgstr "Auftrag:"
+
+#. module: much_qweb_updater_inventory
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_inventory.report_delivery_document_din5008_much
+msgid "Pos"
+msgstr ""
+
+#. module: much_qweb_updater_inventory
+#: model:ir.model.fields,field_description:much_qweb_updater_inventory.field_res_company__inventory_print_coo
+#: model:ir.model.fields,field_description:much_qweb_updater_inventory.field_res_config_settings__inventory_print_coo
+msgid "Print Country of Origin"
+msgstr "Ursprungsland andrucken"
+
+#. module: much_qweb_updater_inventory
+#: model:ir.model.fields,field_description:much_qweb_updater_inventory.field_res_company__inventory_print_hs_code
+#: model:ir.model.fields,field_description:much_qweb_updater_inventory.field_res_config_settings__inventory_print_hs_code
+msgid "Print HS Code"
+msgstr "Zolltarifnummer andrucken"
+
+#. module: much_qweb_updater_inventory
+#: model:ir.model.fields,field_description:much_qweb_updater_inventory.field_res_company__print_weight
+#: model:ir.model.fields,field_description:much_qweb_updater_inventory.field_res_config_settings__print_weight
+msgid "Print Weight"
+msgstr "Gewicht andrucken"
+
+#. module: much_qweb_updater_inventory
+#: model:ir.model.fields,field_description:much_qweb_updater_inventory.field_res_company__show_document_address
+#: model:ir.model.fields,field_description:much_qweb_updater_inventory.field_res_config_settings__show_document_address
+msgid "Show Document Address on Delivery Slip"
+msgstr "Dokumentenadresse auf Lieferschein anzeigen"
+
+#. module: much_qweb_updater_inventory
+#. odoo-python
+#: code:addons/much_qweb_updater_inventory/models/stock_picking.py:0
+#, python-format
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater_inventory.report_delivery_document_din5008_much
+msgid "Shipping Date:"
+msgstr "Lieferdatum:"
+
+#. module: much_qweb_updater_inventory
+#: model:ir.model,name:much_qweb_updater_inventory.model_stock_picking
+msgid "Transfer"
+msgstr ""

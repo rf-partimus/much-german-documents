@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_much_updater_inventory" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.much.updater.inventory</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="much_qweb_updater.res_config_settings_view_form_much_updater"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='much_qweb_updater']" position="inside">
+                <block title="Much Qweb Updater Inventory" name="qweb_updater_inventory">
+                    <setting id="setting_inventory_print_coo">
+                        <field name="inventory_print_coo"/>
+                    </setting>
+                    <setting id="setting_inventory_print_hs_code">
+                        <field name="inventory_print_hs_code"/>
+                    </setting>
+                    <setting id="setting_print_weight">
+                        <field name="print_weight"/>
+                    </setting>
+                    <setting id="setting_description_inv">
+                        <field name="description_delivery"/>
+                    </setting>
+                    <setting id="setting_show_document_address" title="Document Address">
+                        <field name="show_document_address"/>
+                        <div class="text-muted">
+                            Show Document Address block on delivery slips when connected to a sales order
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="base_my_custom_design">
+      <t t-if="design">
+        <t t-raw="design" />
+      </t>
+    </template>
+  </data>
+</odoo>

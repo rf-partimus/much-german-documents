@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="view_stock_picking_much_updater" model="ir.ui.view">
+            <field name="name">stock.picking.much.updater.form.view</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+              <xpath expr="//field[@name='user_id']" position="after">
+                  <field name="order_title" readonly="state == 'cancel'"/>
+                  <label for="report_header_text"/>
+                  <field name="report_header_text"
+                         placeholder="Add a description before table..." nolabel="1"
+                         height="50"
+                         readonly="state == 'cancel'"
+                  />
+              </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

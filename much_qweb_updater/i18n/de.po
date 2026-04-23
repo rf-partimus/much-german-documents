@@ -1,0 +1,214 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* much_qweb_updater
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-19 09:28+0000\n"
+"PO-Revision-Date: 2024-03-19 09:28+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: much_qweb_updater
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater.res_config_settings_view_form_much_updater
+msgid ""
+"<span class=\"text-muted\">If you logo is overlapping then adjust the fields"
+" ('Header spacing', 'Top Margin (mm)') in paper-format</span>"
+msgstr ""
+"<span class=\"text-muted\">Falls das Logo überlappt, ändere die Felder "
+"'Kopfzeilenabstand' und 'Kopfrand (mm)' im Papierformat</span>"
+
+#. module: much_qweb_updater
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater.external_layout_din5008_much
+msgid "<span>|</span>"
+msgstr ""
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_company__adjust_logo
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_config_settings__adjust_logo
+msgid "Adjust Logo"
+msgstr "Logo-Anpassung"
+
+#. module: much_qweb_updater
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater.res_config_settings_view_form_much_updater
+msgid "Allow to configure footer for reports"
+msgstr "Ermöglicht die Konfiguration des Footers der Belege"
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_company__column_1
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_config_settings__column_1
+msgid "Column 1"
+msgstr "Spalte 1"
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_company__column_2
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_config_settings__column_2
+msgid "Column 2"
+msgstr "Spalte 2"
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_company__column_3
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_config_settings__column_3
+msgid "Column 3"
+msgstr "Spalte 3"
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_company__column_4
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_config_settings__column_4
+msgid "Column 4"
+msgstr "Spalte 4"
+
+#. module: much_qweb_updater
+#: model:ir.model,name:much_qweb_updater.model_res_company
+msgid "Companies"
+msgstr "Unternehmen"
+
+#. module: much_qweb_updater
+#: model:ir.model,name:much_qweb_updater.model_res_config_settings
+msgid "Config Settings"
+msgstr "Konfigurationseinstellungen"
+
+#. module: much_qweb_updater
+#: model:ir.model,name:much_qweb_updater.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: much_qweb_updater
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater.res_config_settings_view_form_much_updater
+msgid "Edit Paperformat"
+msgstr "Bearbeite Papierformat"
+
+#. module: much_qweb_updater
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater.res_config_settings_view_form_much_updater
+msgid "Font Size"
+msgstr "Schriftgröße"
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_company__footer_font_size
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_config_settings__footer_font_size
+msgid "Footer Font Size"
+msgstr ""
+
+#. module: much_qweb_updater
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater.res_config_settings_view_form_much_updater
+msgid "For print the company address in reports"
+msgstr "Druckt das Land in der eigenen Firmenadresse an"
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_company__free_text_footer
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_config_settings__free_text_footer
+msgid "Free Text Footer"
+msgstr "Freitext Fußzeile"
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_company__logo_height
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_config_settings__logo_height
+msgid "Height"
+msgstr ""
+
+#. module: much_qweb_updater
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater.res_config_settings_view_form_much_updater
+msgid "Logo Height"
+msgstr "Logo Höhe"
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_company__logo_height_unit
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_config_settings__logo_height_unit
+msgid "Logo Height Unit"
+msgstr ""
+
+#. module: much_qweb_updater
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater.res_config_settings_view_form_much_updater
+msgid "Logo Width"
+msgstr "Logo Weite"
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_company__logo_width_unit
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_config_settings__logo_width_unit
+msgid "Logo Width Unit"
+msgstr ""
+
+#. module: much_qweb_updater
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater.res_config_settings_view_form_much_updater
+msgid "Much Qweb Updater"
+msgstr ""
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_partner__customer_ref
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_users__customer_ref
+msgid "Our Customer Reference"
+msgstr "Unsere Kundennummer"
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,help:much_qweb_updater.field_res_partner__customer_ref
+#: model:ir.model.fields,help:much_qweb_updater.field_res_users__customer_ref
+msgid "Our Customer Reference at a Vendor"
+msgstr "Unsere Kundennummer bei einem Lieferanten"
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_partner__vendor_ref
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_users__vendor_ref
+msgid "Our Vendor Reference"
+msgstr "Unsere Lieferantennummer"
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,help:much_qweb_updater.field_res_partner__vendor_ref
+#: model:ir.model.fields,help:much_qweb_updater.field_res_users__vendor_ref
+msgid "Our Vendor Reference at a Customer"
+msgstr "Unsere Lieferantennummer bei einem Kunden"
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_company__print_company
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_config_settings__print_company
+msgid "Print Company Country"
+msgstr "Firmenland andrucken"
+
+#. module: much_qweb_updater
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater.res_config_settings_view_form_much_updater
+msgid "Qweb Updater"
+msgstr ""
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_company__report_primary_color
+msgid "Report Primary Color"
+msgstr ""
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_company__report_secondary_color
+msgid "Report Secondary Color"
+msgstr ""
+
+#. module: much_qweb_updater
+#: model:ir.model,name:much_qweb_updater.model_res_users
+msgid "User"
+msgstr "Benutzer"
+
+#. module: much_qweb_updater
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater.external_layout_din5008_much
+msgid "VAT ID:"
+msgstr "UST-ID:"
+
+#. module: much_qweb_updater
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_company__logo_width
+#: model:ir.model.fields,field_description:much_qweb_updater.field_res_config_settings__logo_width
+msgid "Width"
+msgstr ""
+
+#. module: much_qweb_updater
+#: model:ir.model.fields.selection,name:much_qweb_updater.selection__res_company__logo_height_unit__in
+#: model:ir.model.fields.selection,name:much_qweb_updater.selection__res_company__logo_width_unit__in
+msgid "in"
+msgstr ""
+
+#. module: much_qweb_updater
+#: model:ir.model.fields.selection,name:much_qweb_updater.selection__res_company__logo_height_unit__px
+#: model:ir.model.fields.selection,name:much_qweb_updater.selection__res_company__logo_width_unit__px
+#: model_terms:ir.ui.view,arch_db:much_qweb_updater.res_config_settings_view_form_much_updater
+msgid "px"
+msgstr ""

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_sale_order_doc_din5008_much" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//t[@t-set='doc']" position="after">
+            <t t-set="font" t-value="doc.company_id.font or 'Lato'"/>
+            <t t-set="primary"
+               t-value="doc.company_id.report_primary_color or '#ea5747'"/>
+            <t t-set="secondary"
+               t-value="doc.company_id.report_secondary_color or '#ffffff'"/>
+
+            <style type="text/css">
+                .terms a{
+                color:<t t-out="primary"/>!important;
+                }
+                .o_main_table thead th {
+                color:<t t-out="secondary"/>!important;
+                background:<t t-out="primary"/>!important;
+                }
+            </style>
+        </xpath>
+        <xpath expr="//div[@id='informations']" position="before">
+            <h5 style="font-weight: bold;" class="mt-4">
+                <t t-if="env.context.get('proforma', False) or is_pro_forma">
+                    <span>Pro-Forma Invoice</span>
+                </t>
+                <span t-elif="doc.state not in ['draft','sent']">Order Confirmation
+                </span>
+                <span t-elif="doc.state in ['draft','sent']">Quotation
+                </span>
+                <span t-field="doc.name"/>
+                <t t-if="doc.order_title">
+                    -
+                    <span t-field="doc.order_title"/>
+                </t>
+            </h5>
+            <span t-if="doc.report_header_text"
+                  t-out="doc.env.user.get_evaluated_val(doc, doc.report_header_text)"/>
+        </xpath>
+        <xpath expr="//t[@t-set='information_block']" position="replace">
+            <t t-set="information_block">
+                <t t-set="print_addresses" t-value="doc.company_id.so_print_invoice_shipping_address or doc.partner_shipping_id != doc.partner_invoice_id"/>
+                <t t-if="print_addresses">
+                    <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id" t-translation="on">Invoicing and Shipping Address</strong>
+                    <strong t-else="" t-translation="on">Invoicing Address</strong>
+                    <div t-field="doc.partner_invoice_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>
+                    <br/>
+                    <t t-if="doc.partner_shipping_id != doc.partner_invoice_id">
+                        <strong t-translation="on">Shipping Address</strong>
+                        <div t-field="doc.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>
+                    </t>
+                </t>
+            </t>
+        </xpath>
+        <xpath expr="//table[hasclass('o_main_table')]" position="before">
+            <t t-set="count" t-value="0"/>
+        </xpath>
+        <xpath expr="//th[@name='th_description']" position="before">
+            <th name="th_position">
+                Pos
+            </th>
+        </xpath>
+        <xpath expr="//t[@t-set='is_combo']" position="after">
+            <t t-if="is_combo or not line.display_type or line.collapse_composition" t-set="count" t-value="count + 1"/>
+        </xpath>
+        <td name="td_combo_name" position="before">
+            <td name="td_combo_pos">
+                <span t-out="count"/>
+            </td>
+        </td>
+        <td name="td_product_name" position="before">
+            <td name="td_pos">
+                <span t-out="count"/>
+            </td>
+        </td>
+        <td name="td_section_group_name" position="before">
+            <td name="td_section_group_pos">
+                <span t-out="count"/>
+            </td>
+        </td>
+        <xpath expr="//p[@id='fiscal_position_remark']//strong" position="replace"/>
+        <xpath expr="//span[@name='order_note']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//span[@name='order_note']" position="after">
+            <span t-if="doc.note"
+                  class="terms"
+                  t-out="doc.env.user.get_evaluated_val(doc, doc.note)"/>
+        </xpath>
+        <xpath expr="//th[@name='th_discount']" position="replace">
+            <th name="th_discount" t-if="display_discount" class="text-end">
+                <span>Disc.%</span>
+            </th>
+        </xpath>
+        <t t-set="display_taxes" position="attributes">
+            <attribute name="t-value">doc.company_id.taxes_on_line and not hide_taxes_details and any(l._has_taxes() for l in lines_to_report)</attribute>
+        </t>
+        <t t-set="section_name_colspan" position="attributes">
+            <attribute name="t-value">4 + (1 if display_discount else 0) + (1 if display_taxes else 0)</attribute>
+        </t>
+    </template>
+
+    <template id="report_saleorder_document_l10n_din5008_much" inherit_id="l10n_din5008_sale.report_saleorder_document">
+
+        <xpath expr="//div[hasclass('information_block')]/table" position="attributes">
+            <attribute name="class" add="table-borderless w-100" separator=" "/>
+        </xpath>
+
+        <xpath expr="//tr[@t-if='doc.user_id']" position="after">
+            <tr t-if="doc.company_id.so_print_sale_person and doc.user_id.phone">
+                <td>Phone:</td>
+                <td>
+                    <t t-out="doc.user_id.phone"/>
+                </td>
+            </tr>
+
+            <tr t-if="doc.company_id.so_print_sale_person and doc.user_id.email">
+                <td>Mail:</td>
+                <td>
+                    <t t-out="doc.user_id.email"/>
+                </td>
+            </tr>
+        </xpath>
+
+        <xpath expr="//div[hasclass('information_block')]/table" position="inside">
+            <tr t-if="doc.company_id.so_print_datev_identifier_customer">
+                <t t-if="'l10n_de_datev_supplier_identifier' in doc.partner_id._fields">
+                    <!-- This means that the datev module is installed -->
+                    <t t-set="datev_customer_identifier" t-value="doc.partner_id.parent_id.l10n_de_datev_identifier or doc.partner_id.l10n_de_datev_identifier"/>
+                </t>
+                <t t-else="">
+                    <t t-set="datev_customer_identifier" t-value="doc.partner_id.parent_id.l10n_de_datev_identifier_customer or doc.partner_id.l10n_de_datev_identifier_customer"/>
+                </t>
+                <t t-if="datev_customer_identifier != 0">
+                    <td>Your Customer Reference:</td>
+                    <td>
+                        <t t-out="datev_customer_identifier"/>
+                    </td>
+                </t>
+            </tr>
+        </xpath>
+
+        <xpath expr="//t[@t-set='din5008_address_block']" position="replace">
+            <t t-set="din5008_address_block">
+                <tr t-if="doc and doc._name=='sale.order'">
+                    <t t-set="commercial_partner" t-value="doc.partner_id.commercial_partner_id"/>
+                    <t t-set="invoice_partner" t-value="doc.partner_invoice_id"/>
+                    <t t-set="delivery_partner" t-value="doc.partner_shipping_id"/>
+                    <t t-set="print_addresses" t-value="doc.company_id.so_print_invoice_shipping_address or invoice_partner != delivery_partner"/>
+
+                    <t t-if="doc.env.context.get('proforma')">
+                        <td class="shipping_address" t-if="delivery_partner and delivery_partner != commercial_partner">
+                            <span class="fw-bold" t-translation="on">Shipping Address:</span>
+                            <address t-esc="delivery_partner" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                        </td>
+                        <td class="shipping_address" t-if="invoice_partner and invoice_partner != commercial_partner">
+                            <span class="fw-bold" t-translation="on">Beneficiary:</span>
+                            <address class="mb-0" t-esc="commercial_partner" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                            <div t-if="commercial_partner.vat">
+                                <t t-if="commercial_partner.company_id.account_fiscal_country_id.vat_label" t-out="commercial_partner.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                                <t t-else="" t-translation="on">Tax ID</t>: <span t-field="commercial_partner.vat"/>
+                            </div>
+                        </td>
+                    </t>
+                    <t t-elif="print_addresses">
+                        <t t-if="doc.partner_invoice_id == doc.partner_shipping_id">
+                            <td class="shipping_address">
+                                <span class="fw-bold" t-translation="on">Invoicing and Shipping Address:</span>
+                                <address t-esc="doc.partner_shipping_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                            </td>
+                        </t>
+                        <t t-else="">
+                            <td class="shipping_address">
+                                <span class="fw-bold" t-translation="on">Shipping Address:</span>
+                                <address t-esc="doc.partner_shipping_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                            </td>
+                            <td class="shipping_address">
+                                <span class="fw-bold" t-translation="on">Invoicing Address:</span>
+                                <address t-esc="doc.partner_invoice_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                            </td>
+                        </t>
+                    </t>
+                </tr>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Fix DIN5008 sales order to show individual name below company name -->
+    <template id="fix_din5008_individual_name_much" inherit_id="l10n_din5008_sale.external_layout_din5008_saleorder">
+        <xpath expr="//address[@t-field='doc.partner_id.commercial_partner_id']" position="replace">
+            <div>
+                <p t-if="doc.partner_id.parent_id" class="m-0">
+                    <t t-out="doc.partner_id.parent_id.name"/>
+                </p>
+                <p class="m-0">
+                    <t t-out="doc.partner_id.name"/>
+                </p>
+                <address class="mb-0" t-field="doc.partner_id" t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>
