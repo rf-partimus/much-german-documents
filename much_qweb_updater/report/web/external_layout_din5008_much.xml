@@ -26,7 +26,7 @@
             </style>
         </xpath>
         <xpath expr="//table[hasclass('din_company_info', 'table-borderless')]" position="attributes">
-            <attribute name="class" add="d-none" separator=" "/>
+            <attribute name="t-if">False</attribute>
         </xpath>
         <!--   Header   Part -->
         <xpath expr="//table[hasclass('company_header', 'table-borderless')]" position="attributes">
