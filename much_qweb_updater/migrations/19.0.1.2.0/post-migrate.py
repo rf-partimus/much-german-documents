@@ -1,7 +1,5 @@
 import logging
 
-from odoo import api, SUPERUSER_ID
-
 _logger = logging.getLogger(__name__)
 
 STUDIO_VIEW_KEY = (
@@ -22,20 +20,16 @@ def migrate(cr, version):
     The Web Studio view (created in v17) uses ``position="replace"
     mode="inner"`` with priority 9999999, overriding all modern
     template inheritances with outdated logic.
+
+    Uses raw SQL to avoid any ORM/Studio hook interference.
     """
-    env = api.Environment(cr, SUPERUSER_ID, {})
-    view = env["ir.ui.view"].search(
-        [
-            ("key", "=", STUDIO_VIEW_KEY),
-            ("active", "=", True),
-        ],
-        limit=1,
+    cr.execute(
+        "UPDATE ir_ui_view SET active = false WHERE key = %s AND active = true",
+        (STUDIO_VIEW_KEY,),
     )
-    if view:
-        view.active = False
+    if cr.rowcount:
         _logger.info(
-            "Deactivated Web Studio DIN5008 layout override (view id=%s)",
-            view.id,
+            "Deactivated %d Web Studio DIN5008 layout override(s)", cr.rowcount
         )
     else:
         _logger.info(

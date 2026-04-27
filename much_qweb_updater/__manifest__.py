@@ -6,7 +6,7 @@
     "author": "much. GmbH",
     "website": "https://muchconsulting.de/",
     "category": "Technical Settings",
-    "version": "19.0.1.2.0",
+    "version": "19.0.1.2.1",
     "license": "Other proprietary",
     "depends": ["l10n_din5008", "l10n_de_reports"],
     "data": [
@@ -24,4 +24,5 @@
     "application": True,
     "module_type": "official",
     "pre_init_hook": "pre_init_hook",
+    "post_init_hook": "post_init_hook",
 }
