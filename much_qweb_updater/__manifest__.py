@@ -6,7 +6,7 @@
     "author": "much. GmbH",
     "website": "https://muchconsulting.de/",
     "category": "Technical Settings",
-    "version": "19.0.1.2.1",
+    "version": "19.0.1.2.2",
     "license": "Other proprietary",
     "depends": ["l10n_din5008", "l10n_de_reports"],
     "data": [
