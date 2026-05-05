@@ -185,7 +185,7 @@
     </template>
 
     <!-- Fix DIN5008 sales order to show individual name below company name -->
-    <template id="fix_din5008_individual_name_much" inherit_id="l10n_din5008_sale.external_layout_din5008_saleorder">
+    <template id="fix_din5008_individual_name_much" inherit_id="l10n_din5008.external_layout_din5008">
         <xpath expr="//address[@t-field='doc.partner_id.commercial_partner_id']" position="replace">
             <div>
                 <p t-if="doc.partner_id.parent_id" class="m-0">
