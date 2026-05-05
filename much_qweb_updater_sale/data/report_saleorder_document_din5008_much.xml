@@ -194,7 +194,9 @@
                 <p class="m-0">
                     <t t-out="doc.partner_id.name"/>
                 </p>
-                <address class="mb-0" t-field="doc.partner_id" t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True}'/>
+                <address class="mb-0" t-field="doc.partner_id" t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+                <t t-set="partner_phone" t-value="doc.partner_id.phone or doc.partner_id.commercial_partner_id.phone"/>
+                <div t-if="partner_phone" t-out="partner_phone"/>
             </div>
         </xpath>
     </template>
