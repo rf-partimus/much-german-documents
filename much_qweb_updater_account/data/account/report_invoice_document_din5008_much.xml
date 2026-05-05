@@ -177,7 +177,7 @@
             <t t-set="extra_colspan" t-value="1"/>
         </xpath>
         <td name="line_name_td" position="attributes">
-            <attribute name="t-att-colspan">(1 if is_product else 6 if display_discount else 5) - line_colspan + extra_colspan</attribute>
+            <attribute name="t-att-colspan">1 if is_product else line_colspan + extra_colspan</attribute>
         </td>
     </template>
 
@@ -243,7 +243,7 @@
 
                     <tr t-if="delivery_partner">
                         <td class="shipping_address">
-                            <span class="fw-bold">Shipping Address:</span>
+                            <span class="fw-bold">Lieferadresse:</span>
                             <p class="m-0">
                                 <t t-if="o.company_id.print_shipping_address_display_name">
                                     <t t-if="delivery_partner.id != delivery_partner.commercial_partner_id.id">
@@ -258,7 +258,7 @@
                                      t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
                         </td>
                         <td class="shipping_address">
-                            <span class="fw-bold">Beneficiary:</span>
+                            <span class="fw-bold">Leistungsempfänger:</span>
                             <p class="m-0">
                                 <t t-if="invoice_partner.id != invoice_partner.commercial_partner_id.id">
                                     <t t-out="invoice_partner.commercial_partner_id.name"/>
