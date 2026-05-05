@@ -85,11 +85,11 @@
                     </div>
                     <div class="mt-3">
                         <div t-if="address">
-                            <t t-out="address"/>
                             <t t-if="o and 'partner_id' in o._fields">
                                 <t t-set="partner_phone" t-value="o.partner_id.phone or o.partner_id.commercial_partner_id.phone"/>
                                 <div t-if="partner_phone" t-out="partner_phone"/>
                             </t>
+                            <t t-out="address"/>
                         </div>
                         <div t-else="fallback_address">
                             <t t-out="fallback_address"

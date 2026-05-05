@@ -16,9 +16,6 @@
                 color:<t t-out="secondary"/>!important;
                 background:<t t-out="primary"/>!important;
                 }
-                div:has(> a[href*="portal_connect_software_modal_btn"]) {
-                display: none !important;
-                }
             </style>
         </xpath>
         <xpath expr="//div[@id='informations']" position="before">
