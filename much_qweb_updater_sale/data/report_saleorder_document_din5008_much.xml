@@ -98,7 +98,7 @@
             <attribute name="t-value">4 + (1 if display_discount else 0) + (1 if display_taxes else 0)</attribute>
         </t>
         <!-- Hide the Odoo "Connect Your Software" promotional link -->
-        <xpath expr="//a[contains(@href, 'portal_connect_software_modal_btn')]/.." position="attributes">
+        <xpath expr="//a[contains(@href, 'portal_connect_software_modal_btn')]" position="attributes">
             <attribute name="t-if">False</attribute>
         </xpath>
     </template>
