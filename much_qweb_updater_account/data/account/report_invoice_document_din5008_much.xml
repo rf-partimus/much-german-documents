@@ -12,15 +12,33 @@
                 .terms a{
                 color:<t t-out="primary"/>!important;
                 }
+                [name=invoice_line_table] {
+                table-layout: fixed;
+                }
                 [name=invoice_line_table] th {
                 color:<t t-out="secondary"/>!important;
                 background:<t t-out="primary"/>!important;
                 }
                 [name=invoice_line_table] th[name=th_position] {
-                width: 5%;
+                width: 6%;
                 }
                 [name=invoice_line_table] th[name=th_description] {
-                width: 45%;
+                width: 40%;
+                }
+                [name=invoice_line_table] th[name=th_quantity] {
+                width: 10%;
+                }
+                [name=invoice_line_table] th[name=th_priceunit] {
+                width: 14%;
+                }
+                [name=invoice_line_table] th[name=th_discount] {
+                width: 7%;
+                }
+                [name=invoice_line_table] th[name=th_taxes] {
+                width: 10%;
+                }
+                [name=invoice_line_table] th[name=th_subtotal] {
+                width: 13%;
                 }
             </style>
         </xpath>
@@ -223,7 +241,7 @@
                     <t t-set="invoice_partner" t-value="o.partner_id"/>
                     <t t-set="delivery_partner" t-value="o.partner_shipping_id"/>
 
-                    <tr t-if="o.company_id.print_shipping_address and delivery_partner">
+                    <tr t-if="delivery_partner">
                         <td class="shipping_address">
                             <span class="fw-bold">Shipping Address:</span>
                             <p class="m-0">
