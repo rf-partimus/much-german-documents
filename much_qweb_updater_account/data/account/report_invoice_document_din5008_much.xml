@@ -16,6 +16,12 @@
                 color:<t t-out="secondary"/>!important;
                 background:<t t-out="primary"/>!important;
                 }
+                [name=invoice_line_table] th[name=th_position] {
+                width: 5%;
+                }
+                [name=invoice_line_table] th[name=th_description] {
+                width: 45%;
+                }
             </style>
         </xpath>
         <xpath expr="//div[hasclass('invoice_main')]/div[hasclass('mb-4')]/t" position="after">
@@ -45,8 +51,10 @@
         <xpath expr="//t[@t-foreach='lines_to_report']" position="before">
             <t t-set="count" t-value="0"/>
         </xpath>
-        <t t-set="is_product" position="before">
-            <t t-set="count" t-value="count+1"/>
+        <t t-set="is_product" position="after">
+            <t t-if="is_product">
+                <t t-set="count" t-value="count+1"/>
+            </t>
         </t>
         <xpath expr="//th[@name='th_description']" position="before">
             <th name="th_position" class="text-start ">
@@ -55,12 +63,12 @@
         </xpath>
         <td name="account_invoice_line_name" position="before">
             <td name="account_invoice_line_pos" class="text-start">
-                <span t-out="count"/>
+                <span t-if="is_product" t-out="count"/>
             </td>
         </td>
         <td name="account_invoice_line_name_grouped_desktop" position="before">
             <td name="account_invoice_line_pos_grouped" class="text-start">
-                <span t-out="count"/>
+                <span t-if="is_product" t-out="count"/>
             </td>
         </td>
         <xpath expr="//p[@name='payment_communication']" position="attributes">
@@ -215,7 +223,7 @@
                     <t t-set="invoice_partner" t-value="o.partner_id"/>
                     <t t-set="delivery_partner" t-value="o.partner_shipping_id"/>
 
-                    <tr t-if="o.company_id.print_shipping_address and delivery_partner and delivery_partner != invoice_partner">
+                    <tr t-if="o.company_id.print_shipping_address and delivery_partner">
                         <td class="shipping_address">
                             <span class="fw-bold">Shipping Address:</span>
                             <p class="m-0">
@@ -230,6 +238,18 @@
                             </p>
                             <address class="mb-0" t-field="o.partner_shipping_id"
                                      t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+                        </td>
+                        <td class="shipping_address">
+                            <span class="fw-bold">Beneficiary:</span>
+                            <p class="m-0">
+                                <t t-if="invoice_partner.id != invoice_partner.commercial_partner_id.id">
+                                    <t t-out="invoice_partner.commercial_partner_id.name"/>
+                                    <br/>
+                                </t>
+                                <t t-out="invoice_partner.name" t-if="invoice_partner.id != invoice_partner.commercial_partner_id.id"/>
+                            </p>
+                            <address class="mb-0" t-field="o.partner_id"
+                                     t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True}'/>
                         </td>
                     </tr>
                 </t>
