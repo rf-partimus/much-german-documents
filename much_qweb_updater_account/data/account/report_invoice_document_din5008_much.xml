@@ -20,22 +20,22 @@
                 background:<t t-out="primary"/>!important;
                 }
                 [name=invoice_line_table] th[name=th_position] {
-                width: 6%;
+                width: 5%;
                 }
                 [name=invoice_line_table] th[name=th_description] {
-                width: 40%;
+                width: 45%;
                 }
                 [name=invoice_line_table] th[name=th_quantity] {
-                width: 10%;
+                width: 9%;
                 }
                 [name=invoice_line_table] th[name=th_priceunit] {
-                width: 14%;
+                width: 13%;
                 }
                 [name=invoice_line_table] th[name=th_discount] {
-                width: 7%;
+                width: 6%;
                 }
                 [name=invoice_line_table] th[name=th_taxes] {
-                width: 10%;
+                width: 9%;
                 }
                 [name=invoice_line_table] th[name=th_subtotal] {
                 width: 13%;
