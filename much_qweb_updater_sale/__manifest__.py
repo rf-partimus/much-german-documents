@@ -7,7 +7,7 @@
     "author": "much. GmbH",
     "website": "https://muchconsulting.de",
     "category": "Technical",
-    "version": "19.0.1.1.5",
+    "version": "19.0.1.1.6",
     "license": "Other proprietary",
     "depends": [
         "base",

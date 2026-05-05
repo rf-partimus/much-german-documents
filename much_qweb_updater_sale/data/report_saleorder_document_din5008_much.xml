@@ -105,6 +105,28 @@
             <attribute name="class" add="table-borderless w-100" separator=" "/>
         </xpath>
 
+        <!-- Hide the Quotation No. row to match v17 layout -->
+        <xpath expr="//tr[td[normalize-space()='Quotation No.:']]" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//tr[td[normalize-space()='Order No.:']]" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+
+        <!-- Replace labels to match v17 German style (no colon, "Ablauf" / "Verkäufer") -->
+        <xpath expr="//td[normalize-space()='Quotation Date:']" position="replace">
+            <td>Angebotsdatum</td>
+        </xpath>
+        <xpath expr="//td[normalize-space()='Order Date:']" position="replace">
+            <td>Auftragsdatum</td>
+        </xpath>
+        <xpath expr="//td[normalize-space()='Expiration:']" position="replace">
+            <td>Ablauf</td>
+        </xpath>
+        <xpath expr="//td[normalize-space()='Salesperson:']" position="replace">
+            <td>Verkäufer</td>
+        </xpath>
+
         <xpath expr="//tr[@t-if='doc.user_id']" position="after">
             <tr t-if="doc.company_id.so_print_sale_person and doc.user_id.phone">
                 <td>Phone:</td>
@@ -180,6 +202,30 @@
                         </t>
                     </t>
                 </tr>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Override the address variable injected by l10n_din5008_sale to render
+         parent name, partner name, address, phone (BEFORE VAT), and VAT in v17 order -->
+    <template id="override_address_din5008_saleorder_much"
+              inherit_id="l10n_din5008_sale.external_layout_din5008_saleorder">
+        <xpath expr="//t[@t-set='address']" position="replace">
+            <t t-set="address">
+                <p t-if="doc.partner_id.parent_id" class="m-0">
+                    <t t-out="doc.partner_id.parent_id.name"/>
+                </p>
+                <p class="m-0">
+                    <t t-out="doc.partner_id.name"/>
+                </p>
+                <div t-field="doc.partner_id"
+                     t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True}'/>
+                <p t-if="doc.partner_id.vat" class="mb-0">
+                    <t t-if="doc.company_id.account_fiscal_country_id.vat_label"
+                       t-out="doc.company_id.account_fiscal_country_id.vat_label"/>
+                    <t t-else="">Tax ID</t>:
+                    <span t-field="doc.partner_id.vat"/>
+                </p>
             </t>
         </xpath>
     </template>

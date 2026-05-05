@@ -43,9 +43,10 @@
         </xpath>
         <xpath expr="//h2" position="attributes">
             <attribute name="t-if">not skip_headers and report_name not in ['account.report_invoice',
-                'account.report_invoice_with_payments', 'stock.report_deliveryslip', 'purchase.report_purchaseorder',
-                'purchase_requisition.report_purchaserequisitions', 'sale.report_saleorder_raw',
-                'sale.report_saleorder', 'sale.report_saleorder_pro_forma', 'purchase.report_purchasequotation']
+                'account.report_invoice_with_payments', 'stock.report_deliveryslip',
+                'purchase.report_purchaseorder',
+                'purchase_requisition.report_purchaserequisitions',
+                'purchase.report_purchasequotation']
             </attribute>
         </xpath>
         <xpath expr="//table[hasclass('din_company_info', 'table-borderless')]" position="after">
@@ -85,10 +86,6 @@
                     <div class="mt-3">
                         <div t-if="address">
                             <t t-out="address"/>
-                            <t t-if="o and 'partner_id' in o._fields">
-                                <t t-set="partner_phone" t-value="o.partner_id.phone or o.partner_id.commercial_partner_id.phone"/>
-                                <div t-if="partner_phone" t-out="partner_phone"/>
-                            </t>
                         </div>
                         <div t-else="fallback_address">
                             <t t-out="fallback_address"
@@ -111,7 +108,7 @@
         <!--  Footer Part -->
         <!-- Footer equal column distribution using actual table structure -->
         <xpath expr="//div[contains(@t-attf-class,'footer')]//table" position="replace">
-            <table t-attf-style="border-top: 2px solid {{primary}} !important; width: 100%; table-layout: fixed;" class="table-borderless">
+            <table t-attf-style="border-top: 2px solid {{primary}} !important; width: 100%;" class="table-borderless">
                 <tr t-if="main_company.free_text_footer">
                     <td style="width: 25%; vertical-align: top; padding: 8px;">
                         <span t-field="main_company.column_1"
@@ -131,21 +128,21 @@
                     </td>
                 </tr>
                 <tr t-else="">
-                    <td style="width: 25%; vertical-align: top; padding: 8px;">
+                    <td style="width: 22%; vertical-align: top; padding: 8px;">
                         <ul class="list-inline mb-0">
                             <li t-if="company.company_details">
                                 <span t-field="company.company_details"/>
                             </li>
                         </ul>
                     </td>
-                    <td style="width: 25%; vertical-align: top; padding: 8px;">
+                    <td style="width: 22%; vertical-align: top; padding: 8px;">
                         <ul class="list-inline mb-0">
                             <li t-if="company.report_footer">
                                 <span t-field="company.report_footer"/>
                             </li>
                         </ul>
                     </td>
-                    <td style="width: 25%; vertical-align: top; padding: 8px;">
+                    <td style="width: 30%; vertical-align: top; padding: 8px;">
                         <ul class="list-inline mb-0">
                             <li t-if="company.vat">
                                 <span t-if="company.vat">VAT ID:</span>
@@ -153,7 +150,7 @@
                             </li>
                         </ul>
                     </td>
-                    <td style="width: 25%; vertical-align: top; padding: 8px;">
+                    <td style="width: 26%; vertical-align: top; padding: 8px;">
                         <ul class="list-inline mb-0">
                             <li t-if="company.partner_id.bank_ids">
                                 <span t-field="company.partner_id.bank_ids"/>
