@@ -105,26 +105,12 @@
             <attribute name="class" add="table-borderless w-100" separator=" "/>
         </xpath>
 
-        <!-- Hide the Quotation No. row to match v17 layout -->
-        <xpath expr="//tr[td[normalize-space()='Quotation No.:']]" position="attributes">
+        <!-- Hide the Quotation No. / Order No. row to match v17 layout (the number is already in the H5 title) -->
+        <xpath expr="//tr[@t-if='doc.name']" position="attributes">
             <attribute name="t-if">False</attribute>
         </xpath>
-        <xpath expr="//tr[td[normalize-space()='Order No.:']]" position="attributes">
+        <xpath expr="//tr[@t-if='doc.name']" position="attributes">
             <attribute name="t-if">False</attribute>
-        </xpath>
-
-        <!-- Replace labels to match v17 German style (no colon, "Ablauf" / "Verkäufer") -->
-        <xpath expr="//td[normalize-space()='Quotation Date:']" position="replace">
-            <td>Angebotsdatum</td>
-        </xpath>
-        <xpath expr="//td[normalize-space()='Order Date:']" position="replace">
-            <td>Auftragsdatum</td>
-        </xpath>
-        <xpath expr="//td[normalize-space()='Expiration:']" position="replace">
-            <td>Ablauf</td>
-        </xpath>
-        <xpath expr="//td[normalize-space()='Salesperson:']" position="replace">
-            <td>Verkäufer</td>
         </xpath>
 
         <xpath expr="//tr[@t-if='doc.user_id']" position="after">
