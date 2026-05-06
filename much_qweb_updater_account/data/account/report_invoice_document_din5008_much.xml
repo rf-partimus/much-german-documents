@@ -66,6 +66,10 @@
                 [name=invoice_line_table] tbody td {
                 border-bottom: 0.5pt solid #E5E5E5!important;
                 }
+                /* Reduce gap above totals block */
+                #right-elements.mt-5 {
+                margin-top: 1rem!important;
+                }
                 /* Hide original info-block (replaced by meta-row) */
                 .information_block {
                 display: none!important;
