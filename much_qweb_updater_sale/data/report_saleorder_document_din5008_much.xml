@@ -13,7 +13,6 @@
                 color:<t t-out="primary"/>!important;
                 }
                 .o_main_table {
-                table-layout: fixed;
                 width: 100%!important;
                 }
                 .o_main_table thead th {
@@ -24,9 +23,6 @@
                 }
                 .o_main_table th[name=th_position] {
                 width: 5%;
-                }
-                .o_main_table th[name=th_description] {
-                width: auto;
                 }
                 .o_main_table th[name=th_quantity] {
                 width: 9%;
