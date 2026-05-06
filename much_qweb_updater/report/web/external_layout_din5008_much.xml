@@ -23,6 +23,19 @@
                 <t t-out='primary'/>
                 !important;
                 }
+                /* Red top line */
+                .header {
+                border-top: 6px solid <t t-out='primary'/> !important;
+                }
+                /* Gray footer background */
+                div[t-attf-class*='footer'] table,
+                .footer table {
+                background: #F3F3F3 !important;
+                }
+                /* Table row bottom borders */
+                [name=invoice_line_table] tbody td {
+                border-bottom: 0.5pt solid #E5E5E5 !important;
+                }
             </style>
         </xpath>
         <xpath expr="//table[hasclass('din_company_info', 'table-borderless')]" position="attributes">
@@ -112,7 +125,7 @@
         <!--  Footer Part -->
         <!-- Footer equal column distribution using actual table structure -->
         <xpath expr="//div[contains(@t-attf-class,'footer')]//table" position="replace">
-            <table t-attf-style="border-top: 2px solid {{primary}} !important; width: 100%;" class="table-borderless">
+            <table t-attf-style="border-top: 2px solid {{primary}} !important; width: 100%; background: #F3F3F3 !important;" class="table-borderless">
                 <tr t-if="main_company.free_text_footer">
                     <td style="width: 25%; vertical-align: top; padding: 8px;">
                         <span t-field="main_company.column_1"

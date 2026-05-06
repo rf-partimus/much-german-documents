@@ -61,6 +61,10 @@
                 color:<t t-out="primary"/>!important;
                 font-weight: bold;
                 }
+                /* Table row bottom borders */
+                [name=invoice_line_table] tbody td {
+                border-bottom: 0.5pt solid #E5E5E5!important;
+                }
                 /* Hide original info-block (replaced by meta-row) */
                 .information_block {
                 display: none!important;
