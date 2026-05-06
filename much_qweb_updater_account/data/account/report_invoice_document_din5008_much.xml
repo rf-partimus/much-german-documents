@@ -19,6 +19,7 @@
                 color:<t t-out="primary"/>!important;
                 background: transparent!important;
                 border-bottom: 1.5pt solid <t t-out="primary"/>!important;
+                white-space: nowrap;
                 }
                 [name=invoice_line_table] th[name=th_position] {
                 width: 5%;
