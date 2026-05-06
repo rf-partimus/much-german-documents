@@ -24,7 +24,7 @@
                 !important;
                 }
                 /* Red top line */
-                .header {
+                div[class*='header'], .header {
                 border-top: 6px solid <t t-out='primary'/> !important;
                 }
                 /* Gray footer full width */
@@ -37,9 +37,14 @@
                 div[t-attf-class*='footer'] table {
                 background: #F3F3F3 !important;
                 }
-                /* Sender line on one line */
-                .address {
+                /* Sender line on one line - override col-6 width */
+                .din_company_info .address {
                 white-space: nowrap;
+                }
+                .din_company_info > .col-6:first-child {
+                width: 100% !important;
+                max-width: 100% !important;
+                flex: 0 0 100% !important;
                 }
                 /* Table row bottom borders */
                 [name=invoice_line_table] tbody td {
