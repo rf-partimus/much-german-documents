@@ -241,7 +241,7 @@
                     <t t-set="invoice_partner" t-value="o.partner_id"/>
                     <t t-set="delivery_partner" t-value="o.partner_shipping_id"/>
 
-                    <tr t-if="delivery_partner">
+                    <tr t-if="delivery_partner and delivery_partner.id != invoice_partner.id">
                         <td class="shipping_address">
                             <span class="fw-bold">Lieferadresse:</span>
                             <p class="m-0">
