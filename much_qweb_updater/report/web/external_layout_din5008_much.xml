@@ -27,10 +27,19 @@
                 .header {
                 border-top: 6px solid <t t-out='primary'/> !important;
                 }
-                /* Gray footer background */
-                div[t-attf-class*='footer'] table,
-                .footer table {
+                /* Gray footer full width */
+                div[t-attf-class*='footer'] {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                }
+                div[t-attf-class*='footer'] table {
                 background: #F3F3F3 !important;
+                }
+                /* Sender line on one line */
+                .address {
+                white-space: nowrap;
                 }
                 /* Table row bottom borders */
                 [name=invoice_line_table] tbody td {
@@ -68,7 +77,7 @@
                    t-value="(main_company.name or '') + (main_company.street or '') + (main_company.street2 or '')  + (company.zip or '')"/>
                 <t t-set="company_data" t-value="company_data + company.country_id.name"
                    t-if="company_data and main_company.print_company"/>
-                <t t-set="one_line_data" t-value="True if len(company_data) &lt; 56 else False" t-if="company_data"/>
+                <t t-set="one_line_data" t-value="True if len(company_data) &lt; 90 else False" t-if="company_data"/>
                 <div class="col-6" t-att-style="'padding-left: 5mm !important;'">
                     <div class="address"
                          t-att-style="'border-bottom: 1px solid %s !important; display: inline!important; font-size: 0.8em; !important' % (primary)">
