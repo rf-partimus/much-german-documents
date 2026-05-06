@@ -68,7 +68,9 @@
                 'account.report_invoice_with_payments', 'stock.report_deliveryslip',
                 'purchase.report_purchaseorder',
                 'purchase_requisition.report_purchaserequisitions',
-                'purchase.report_purchasequotation']
+                'purchase.report_purchasequotation',
+                'sale.report_saleorder',
+                'sale.report_saleorder_pro_forma']
             </attribute>
         </xpath>
         <xpath expr="//table[hasclass('din_company_info', 'table-borderless')]" position="after">
