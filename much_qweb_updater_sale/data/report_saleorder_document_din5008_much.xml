@@ -12,14 +12,132 @@
                 .terms a{
                 color:<t t-out="primary"/>!important;
                 }
+                .o_main_table {
+                table-layout: fixed;
+                width: 100%!important;
+                }
                 .o_main_table thead th {
-                color:<t t-out="secondary"/>!important;
-                background:<t t-out="primary"/>!important;
+                color:<t t-out="primary"/>!important;
+                background: transparent!important;
+                border-bottom: 1.5pt solid <t t-out="primary"/>!important;
+                white-space: nowrap;
+                }
+                .o_main_table th[name=th_position] {
+                width: 5%;
+                }
+                .o_main_table th[name=th_description] {
+                width: 43%;
+                }
+                .o_main_table th[name=th_quantity] {
+                width: 9%;
+                }
+                .o_main_table th[name=th_priceunit] {
+                width: 13%;
+                }
+                .o_main_table th[name=th_discount] {
+                width: 7%;
+                }
+                .o_main_table th[name=th_taxes] {
+                width: 10%;
+                }
+                .o_main_table th[name=th_subtotal] {
+                width: 13%;
+                }
+                /* Pos numbers red + bold */
+                [name=td_pos] span,
+                [name=td_combo_pos] span,
+                [name=td_section_group_pos] span {
+                color:<t t-out="primary"/>;
+                font-weight: bold;
+                }
+                /* Section rows */
+                .o_main_table .o_line_section td {
+                background: #FAFAFA!important;
+                padding-top: 4mm;
+                padding-bottom: 2mm;
+                font-weight: bold;
+                }
+                /* Section amount in red */
+                .o_main_table .o_line_section td:last-child {
+                color:<t t-out="primary"/>!important;
+                }
+                /* Table row bottom borders */
+                .o_main_table tbody td {
+                border-bottom: 0.5pt solid #E5E5E5!important;
+                }
+                /* Reduce gap above totals block */
+                #right-elements {
+                margin-top: 0.5rem!important;
+                margin-left: 0!important;
+                }
+                /* Payment terms + notes: compact, no page break */
+                #payment_term {
+                margin-top: 0.5rem!important;
+                font-size: 8pt!important;
+                line-height: 1.3!important;
+                page-break-inside: avoid;
+                }
+                #payment_term .mb-3 {
+                margin-bottom: 0.3rem!important;
+                }
+                div[name='comment'] {
+                font-size: 8pt!important;
+                line-height: 1.3!important;
+                page-break-inside: avoid;
+                margin-bottom: 0.3rem!important;
+                }
+                /* Hide original info-block (replaced by meta-row) */
+                .information_block {
+                display: none!important;
+                }
+                /* Hide original informations row (replaced by meta-row) */
+                #informations {
+                display: none!important;
+                }
+                /* Meta-row as table (wkhtmltopdf compatible) */
+                .meta-row-table {
+                width: 100%;
+                border-collapse: collapse;
+                border: 1px solid #E5E5E5;
+                margin-bottom: 3mm;
+                }
+                .meta-row-table td {
+                padding: 2mm 3mm;
+                border-right: 1px solid #E5E5E5;
+                vertical-align: top;
+                }
+                .meta-row-table td:last-child {
+                border-right: none;
+                }
+                .meta-row-table .meta-label {
+                font-size: 7pt;
+                font-weight: bold;
+                color: <t t-out="primary"/>;
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+                }
+                .meta-row-table .meta-value {
+                font-size: 9pt;
+                font-weight: bold;
+                color: #000;
+                margin-top: 0.5mm;
+                }
+                .meta-row-table td.highlight {
+                background: #F8D7DA;
+                }
+                /* Red title */
+                .invoice-title-ci {
+                font-size: 16pt;
+                font-weight: bold;
+                color: <t t-out="primary"/>;
+                margin-top: 3mm;
+                margin-bottom: 2mm;
                 }
             </style>
         </xpath>
         <xpath expr="//div[@id='informations']" position="before">
-            <h5 style="font-weight: bold;" class="mt-4">
+            <!-- CI Title -->
+            <div class="invoice-title-ci">
                 <t t-if="env.context.get('proforma', False) or is_pro_forma">
                     <span>Pro-Forma Invoice</span>
                 </t>
@@ -32,7 +150,28 @@
                     -
                     <span t-field="doc.order_title"/>
                 </t>
-            </h5>
+            </div>
+            <!-- Meta-Row as table (wkhtmltopdf compatible) -->
+            <table class="meta-row-table">
+                <tr>
+                    <td t-if="doc.date_order">
+                        <div class="meta-label">Datum</div>
+                        <div class="meta-value" t-out="doc.date_order" t-options="{'widget': 'date'}"/>
+                    </td>
+                    <td class="highlight" t-if="doc.validity_date">
+                        <div class="meta-label">Gültig bis</div>
+                        <div class="meta-value" t-out="doc.validity_date" t-options="{'widget': 'date'}"/>
+                    </td>
+                    <td t-if="doc.client_order_ref">
+                        <div class="meta-label">Ihre Referenz</div>
+                        <div class="meta-value" t-out="doc.client_order_ref"/>
+                    </td>
+                    <td t-if="doc.user_id">
+                        <div class="meta-label">Ansprechpartner</div>
+                        <div class="meta-value" t-out="doc.user_id.name"/>
+                    </td>
+                </tr>
+            </table>
             <span t-if="doc.report_header_text"
                   t-out="doc.env.user.get_evaluated_val(doc, doc.report_header_text)"/>
         </xpath>
@@ -88,7 +227,7 @@
         </xpath>
         <xpath expr="//th[@name='th_discount']" position="replace">
             <th name="th_discount" t-if="display_discount" class="text-end">
-                <span>Disc.%</span>
+                <span>Rab.%</span>
             </th>
         </xpath>
         <t t-set="display_taxes" position="attributes">
@@ -97,6 +236,10 @@
         <t t-set="section_name_colspan" position="attributes">
             <attribute name="t-value">4 + (1 if display_discount else 0) + (1 if display_taxes else 0)</attribute>
         </t>
+        <!-- Rename Unit Price to Einzelpreis -->
+        <xpath expr="//th[@name='th_priceunit']/span" position="replace">
+            <span>Einzelpreis</span>
+        </xpath>
     </template>
 
     <template id="report_saleorder_document_l10n_din5008_much" inherit_id="l10n_din5008_sale.report_saleorder_document">
