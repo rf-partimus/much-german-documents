@@ -37,14 +37,9 @@
                 div[t-attf-class*='footer'] table {
                 background: #F3F3F3 !important;
                 }
-                /* Sender line on one line - override col-6 width */
+                /* Sender line on one line */
                 .din_company_info .address {
                 white-space: nowrap;
-                }
-                .din_company_info > .col-6:first-child {
-                width: 100% !important;
-                max-width: 100% !important;
-                flex: 0 0 100% !important;
                 }
                 /* Table row bottom borders */
                 [name=invoice_line_table] tbody td {
@@ -83,7 +78,7 @@
                 <t t-set="company_data" t-value="company_data + company.country_id.name"
                    t-if="company_data and main_company.print_company"/>
                 <t t-set="one_line_data" t-value="True if len(company_data) &lt; 90 else False" t-if="company_data"/>
-                <div class="col-6" t-att-style="'padding-left: 5mm !important;'">
+                <div class="col-12" t-att-style="'padding-left: 5mm !important;'">
                     <div class="address"
                          t-att-style="'border-bottom: 1px solid %s !important; display: inline!important; font-size: 0.8em; !important' % (primary)">
                         <t t-if="main_company.name">
