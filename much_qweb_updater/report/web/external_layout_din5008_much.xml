@@ -119,7 +119,7 @@
                         </div>
                     </div>
                 </div>
-                <div t-if="din5008_document_information" class="col-6"
+                <div t-if="False" class="col-6"
                      t-attf-style="#{'margin-top: 33px !important;' if one_line_data else 'margin-top: 49px !important;'}">
                     <t t-out="din5008_document_information"/>
                 </div>

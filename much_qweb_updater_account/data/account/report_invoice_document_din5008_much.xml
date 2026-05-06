@@ -14,6 +14,7 @@
                 }
                 [name=invoice_line_table] {
                 table-layout: fixed;
+                width: 100%!important;
                 }
                 [name=invoice_line_table] th {
                 color:<t t-out="primary"/>!important;
@@ -68,11 +69,6 @@
                 /* Hide original info-block (replaced by meta-row) */
                 .information_block {
                 display: none!important;
-                }
-                /* Make invoice content full width when info-block is hidden */
-                div.invoice_main {
-                width: 100%!important;
-                max-width: 100%!important;
                 }
                 /* Meta-row as table (wkhtmltopdf compatible) */
                 .meta-row-table {
