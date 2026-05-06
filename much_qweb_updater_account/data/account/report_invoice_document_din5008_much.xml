@@ -65,35 +65,35 @@
                 .information_block {
                 display: none!important;
                 }
-                /* Meta-row (horizontal cells) */
-                .meta-row {
-                display: flex;
+                /* Meta-row as table (wkhtmltopdf compatible) */
+                .meta-row-table {
+                width: 100%;
+                border-collapse: collapse;
                 border: 1px solid #E5E5E5;
-                border-radius: 3px;
                 margin-bottom: 3mm;
                 }
-                .meta-row .meta-cell {
-                flex: 1;
-                padding: 2.5mm 3mm;
+                .meta-row-table td {
+                padding: 2mm 3mm;
                 border-right: 1px solid #E5E5E5;
+                vertical-align: top;
                 }
-                .meta-row .meta-cell:last-child {
+                .meta-row-table td:last-child {
                 border-right: none;
                 }
-                .meta-row .meta-label {
+                .meta-row-table .meta-label {
                 font-size: 7pt;
                 font-weight: bold;
                 color: <t t-out="primary"/>;
                 text-transform: uppercase;
                 letter-spacing: 0.3px;
                 }
-                .meta-row .meta-value {
+                .meta-row-table .meta-value {
                 font-size: 9pt;
                 font-weight: bold;
                 color: #000;
                 margin-top: 0.5mm;
                 }
-                .meta-row .meta-cell.highlight {
+                .meta-row-table td.highlight {
                 background: #FCF3F4;
                 }
                 /* Red invoice title */
@@ -127,29 +127,31 @@
                     <span t-field="o.order_title"/>
                 </t>
             </div>
-            <!-- Meta-Row (horizontal info cells) -->
-            <div class="meta-row">
-                <div class="meta-cell" t-if="o.invoice_date">
-                    <div class="meta-label">Rechnungsdatum</div>
-                    <div class="meta-value" t-out="o.invoice_date" t-options="{'widget': 'date'}"/>
-                </div>
-                <div class="meta-cell highlight" t-if="o.invoice_date_due">
-                    <div class="meta-label">Fälligkeit</div>
-                    <div class="meta-value" t-out="o.invoice_date_due" t-options="{'widget': 'date'}"/>
-                </div>
-                <div class="meta-cell" t-if="o.delivery_date">
-                    <div class="meta-label">Lieferdatum</div>
-                    <div class="meta-value" t-out="o.delivery_date" t-options="{'widget': 'date'}"/>
-                </div>
-                <div class="meta-cell" t-if="o.invoice_origin">
-                    <div class="meta-label">Verweis</div>
-                    <div class="meta-value" t-out="o.invoice_origin"/>
-                </div>
-                <div class="meta-cell" t-if="o.ref and not o.invoice_origin">
-                    <div class="meta-label">Referenz</div>
-                    <div class="meta-value" t-out="o.ref"/>
-                </div>
-            </div>
+            <!-- Meta-Row as table (wkhtmltopdf compatible) -->
+            <table class="meta-row-table">
+                <tr>
+                    <td t-if="o.invoice_date">
+                        <div class="meta-label">Rechnungsdatum</div>
+                        <div class="meta-value" t-out="o.invoice_date" t-options="{'widget': 'date'}"/>
+                    </td>
+                    <td class="highlight" t-if="o.invoice_date_due">
+                        <div class="meta-label">Fälligkeit</div>
+                        <div class="meta-value" t-out="o.invoice_date_due" t-options="{'widget': 'date'}"/>
+                    </td>
+                    <td t-if="o.delivery_date">
+                        <div class="meta-label">Lieferdatum</div>
+                        <div class="meta-value" t-out="o.delivery_date" t-options="{'widget': 'date'}"/>
+                    </td>
+                    <td t-if="o.invoice_origin">
+                        <div class="meta-label">Verweis</div>
+                        <div class="meta-value" t-out="o.invoice_origin"/>
+                    </td>
+                    <td t-if="o.ref and not o.invoice_origin">
+                        <div class="meta-label">Referenz</div>
+                        <div class="meta-value" t-out="o.ref"/>
+                    </td>
+                </tr>
+            </table>
             <span t-if="o.report_header_text"
                   t-out="o.env.user.get_evaluated_val(o, o.report_header_text)"/>
         </xpath>
