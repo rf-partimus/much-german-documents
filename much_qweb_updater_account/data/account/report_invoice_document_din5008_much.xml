@@ -67,8 +67,13 @@
                 border-bottom: 0.5pt solid #E5E5E5!important;
                 }
                 /* Reduce gap above totals block */
-                #right-elements.mt-5 {
-                margin-top: 1rem!important;
+                #right-elements {
+                margin-top: 0.5rem!important;
+                margin-left: 0!important;
+                }
+                /* Reduce payment term spacing */
+                #payment_term {
+                margin-top: 0.5rem!important;
                 }
                 /* Hide original info-block (replaced by meta-row) */
                 .information_block {
