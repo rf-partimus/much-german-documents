@@ -16,8 +16,9 @@
                 table-layout: fixed;
                 }
                 [name=invoice_line_table] th {
-                color:<t t-out="secondary"/>!important;
-                background:<t t-out="primary"/>!important;
+                color:<t t-out="primary"/>!important;
+                background: transparent!important;
+                border-bottom: 1.5pt solid <t t-out="primary"/>!important;
                 }
                 [name=invoice_line_table] th[name=th_position] {
                 width: 5%;
@@ -39,6 +40,25 @@
                 }
                 [name=invoice_line_table] th[name=th_subtotal] {
                 width: 13%;
+                }
+                [name=account_invoice_line_pos] span,
+                [name=account_invoice_line_pos_grouped] span {
+                color:<t t-out="primary"/>;
+                font-weight: bold;
+                }
+                [name=invoice_line_table] td.invoice_section {
+                background: #FAFAFA!important;
+                padding-top: 4mm;
+                padding-bottom: 2mm;
+                font-weight: bold;
+                }
+                [name=invoice_line_table] tr.invoice_line_section td {
+                background: #FAFAFA!important;
+                }
+                [name=invoice_line_table] td.invoice_section + td {
+                background: #FAFAFA!important;
+                color:<t t-out="primary"/>!important;
+                font-weight: bold;
                 }
             </style>
         </xpath>
