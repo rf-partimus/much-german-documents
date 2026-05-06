@@ -237,8 +237,8 @@
             <attribute name="t-value">4 + (1 if display_discount else 0) + (1 if display_taxes else 0)</attribute>
         </t>
         <!-- Rename Unit Price to Einzelpreis -->
-        <xpath expr="//th[@name='th_priceunit']/span" position="replace">
-            <span>Einzelpreis</span>
+        <xpath expr="//th[@name='th_priceunit']" position="replace">
+            <th name="th_priceunit" class="text-end text-nowrap">Einzelpreis</th>
         </xpath>
     </template>
 
