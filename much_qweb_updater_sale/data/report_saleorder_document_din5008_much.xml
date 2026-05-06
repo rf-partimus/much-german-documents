@@ -26,7 +26,7 @@
                 width: 5%;
                 }
                 .o_main_table th[name=th_description] {
-                width: 43%;
+                width: auto;
                 }
                 .o_main_table th[name=th_quantity] {
                 width: 9%;
