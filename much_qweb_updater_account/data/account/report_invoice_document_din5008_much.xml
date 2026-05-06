@@ -24,7 +24,7 @@
                 width: 5%;
                 }
                 [name=invoice_line_table] th[name=th_description] {
-                width: 45%;
+                width: 43%;
                 }
                 [name=invoice_line_table] th[name=th_quantity] {
                 width: 9%;
@@ -33,10 +33,10 @@
                 width: 13%;
                 }
                 [name=invoice_line_table] th[name=th_discount] {
-                width: 6%;
+                width: 7%;
                 }
                 [name=invoice_line_table] th[name=th_taxes] {
-                width: 9%;
+                width: 10%;
                 }
                 [name=invoice_line_table] th[name=th_subtotal] {
                 width: 13%;
