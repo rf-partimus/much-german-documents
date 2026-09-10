@@ -120,7 +120,7 @@
                 margin-top: 0.5mm;
                 }
                 .meta-row-table td.highlight {
-                background: #F8D7DA;
+                background: #FDEEED;
                 }
                 /* Red invoice title */
                 .invoice-title-ci {

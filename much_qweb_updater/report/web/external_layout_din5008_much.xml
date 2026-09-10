@@ -23,19 +23,19 @@
                 <t t-out='primary'/>
                 !important;
                 }
-                /* Red top line */
-                div[class*='header'], .header {
-                border-top: 6px solid <t t-out='primary'/> !important;
+                /* 2026: header images must ignore base din5008 img rules */
+                .din_page.header .company_header img {
+                padding: 0 !important;
+                float: none !important;
                 }
-                /* Gray footer full width */
-                div[t-attf-class*='footer'] {
+                /* 2026: full-bleed footer image */
+                .din_page.footer {
                 padding-left: 0 !important;
                 padding-right: 0 !important;
-                margin-left: 0 !important;
-                margin-right: 0 !important;
+                margin: 0 !important;
                 }
-                div[t-attf-class*='footer'] table {
-                background: #F3F3F3 !important;
+                .din_page.footer .page_number {
+                padding-right: 10mm;
                 }
                 /* Sender line on one line */
                 .din_company_info .address {
@@ -50,18 +50,20 @@
         <xpath expr="//table[hasclass('din_company_info', 'table-borderless')]" position="attributes">
             <attribute name="t-if">False</attribute>
         </xpath>
-        <!--   Header   Part -->
-        <xpath expr="//table[hasclass('company_header', 'table-borderless')]" position="attributes">
-            <attribute name="t-att-style">'height: 27mm;'</attribute>
-        </xpath>
-        <xpath expr="//img[@t-if='company.logo']" position="attributes">
-            <attribute name="t-att-style"/>
-            <attribute name="t-attf-style">
-                margin-right: 10mm;
-                #{'max-height: 80px;' if not main_company.logo_width and not main_company.logo_height else ''}
-                #{(main_company.logo_width) and 'width: %d%s;' % (main_company.logo_width, main_company.logo_width_unit) or ''}
-                #{(main_company.logo_height) and 'height: %d%s;' % (main_company.logo_height, main_company.logo_height_unit) or 'max-height: 102px;'}
-            </attribute>
+        <!--   Header   Part: 2026 design — gradient bar (full bleed left) + logo/tagline right -->
+        <xpath expr="//table[hasclass('company_header', 'table-borderless')]" position="replace">
+            <table class="company_header table-borderless" style="width: 100%; margin-top: 12mm; border-collapse: collapse;">
+                <tr>
+                    <td style="padding: 0; vertical-align: top;">
+                        <img src="/much_qweb_updater/static/img/header_bar_2026.png" alt=""
+                             style="width: 132.6mm; height: 9mm; margin-left: -20mm; display: block;"/>
+                    </td>
+                    <td style="padding: 0; vertical-align: top; text-align: right; width: 56mm;">
+                        <img src="/much_qweb_updater/static/img/logo_tagline_2026.png" alt="partimus – host local. share global."
+                             style="width: 44.1mm; height: 12mm; margin-right: 10mm;"/>
+                    </td>
+                </tr>
+            </table>
         </xpath>
         <xpath expr="//h2" position="attributes">
             <attribute name="t-if">not skip_headers and report_name not in ['account.report_invoice',
@@ -82,7 +84,7 @@
                 <t t-set="one_line_data" t-value="True if len(company_data) &lt; 90 else False" t-if="company_data"/>
                 <div class="col-12" t-att-style="'padding-left: 5mm !important;'">
                     <div class="address"
-                         t-att-style="'border-bottom: 1px solid %s !important; display: inline!important; font-size: 0.8em; !important' % (primary)">
+                         style="border-bottom: 0.5pt solid #D9D9D9 !important; display: inline !important; font-size: 7pt !important; color: #959595 !important; padding-bottom: 1.5mm;">
                         <t t-if="main_company.name">
                             <span t-field="company.name"/>
                         </t>
@@ -133,60 +135,11 @@
                 </t>
             </table>
         </xpath>
-        <!--  Footer Part -->
-        <!-- Footer equal column distribution using actual table structure -->
+        <!--  Footer Part: 2026 design — full-bleed footer image with baked-in company data -->
         <xpath expr="//div[contains(@t-attf-class,'footer')]//table" position="replace">
-            <table t-attf-style="border-top: 2px solid {{primary}} !important; width: 100%; background: #F3F3F3 !important;" class="table-borderless">
-                <tr t-if="main_company.free_text_footer">
-                    <td style="width: 25%; vertical-align: top; padding: 8px;">
-                        <span t-field="main_company.column_1"
-                              t-att-style="'font-size: %dpx;' % (main_company.footer_font_size) if main_company.footer_font_size else ''"/>
-                    </td>
-                    <td style="width: 25%; vertical-align: top; padding: 8px;">
-                        <span t-field="main_company.column_2"
-                              t-att-style="'font-size: %dpx;' % (main_company.footer_font_size) if main_company.footer_font_size else ''"/>
-                    </td>
-                    <td style="width: 25%; vertical-align: top; padding: 8px;">
-                        <span t-field="main_company.column_3"
-                              t-att-style="'font-size: %dpx;' % (main_company.footer_font_size) if main_company.footer_font_size else ''"/>
-                    </td>
-                    <td style="width: 25%; vertical-align: top; padding: 8px;">
-                        <span t-field="main_company.column_4"
-                              t-att-style="'font-size: %dpx;' % (main_company.footer_font_size) if main_company.footer_font_size else ''"/>
-                    </td>
-                </tr>
-                <tr t-else="">
-                    <td style="width: 22%; vertical-align: top; padding: 8px;">
-                        <ul class="list-inline mb-0">
-                            <li t-if="company.company_details">
-                                <span t-field="company.company_details"/>
-                            </li>
-                        </ul>
-                    </td>
-                    <td style="width: 22%; vertical-align: top; padding: 8px;">
-                        <ul class="list-inline mb-0">
-                            <li t-if="company.report_footer">
-                                <span t-field="company.report_footer"/>
-                            </li>
-                        </ul>
-                    </td>
-                    <td style="width: 30%; vertical-align: top; padding: 8px;">
-                        <ul class="list-inline mb-0">
-                            <li t-if="company.vat">
-                                <span t-if="company.vat">VAT ID:</span>
-                                <span t-field="company.vat"/>
-                            </li>
-                        </ul>
-                    </td>
-                    <td style="width: 26%; vertical-align: top; padding: 8px;">
-                        <ul class="list-inline mb-0">
-                            <li t-if="company.partner_id.bank_ids">
-                                <span t-field="company.partner_id.bank_ids"/>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            </table>
+            <img src="/much_qweb_updater/static/img/footer_2026.png"
+                 alt="partimus GmbH – Kontakt- und Bankdaten"
+                 style="width: 210mm; height: 35.06mm; margin-left: -20mm; display: block;"/>
         </xpath>
     </template>
 </odoo>

@@ -7,7 +7,7 @@
     "author": "much. GmbH",
     "website": "https://muchconsulting.de",
     "category": "Technical",
-    "version": "19.0.1.1.1",
+    "version": "19.0.1.1.2",
     "license": "Other proprietary",
     # any module necessary for this one to work correctly
     "depends": ["base", "account", "much_qweb_updater", "sale"],
