@@ -68,6 +68,10 @@
                 padding-top: 1mm;
                 padding-bottom: 1.5mm;
                 }
+                /* unit names must not break mid-word */
+                .o_main_table td.o_td_quantity span {
+                white-space: nowrap;
+                }
                 /* Reduce gap above totals block */
                 #right-elements {
                 margin-top: 0.5rem!important;
@@ -241,6 +245,12 @@
                 <span t-out="count"/>
             </td>
         </td>
+        <!-- 2026: payment terms without note (e.g. Lastschrift) fall back to the term name -->
+        <xpath expr="//p[@t-if='not is_html_empty(doc.payment_term_id.note)']" position="after">
+            <p t-if="doc.payment_term_id and is_html_empty(doc.payment_term_id.note)">
+                Zahlungsbedingungen: <span t-field="doc.payment_term_id.name"/>
+            </p>
+        </xpath>
         <xpath expr="//p[@id='fiscal_position_remark']//strong" position="replace"/>
         <xpath expr="//span[@name='order_note']" position="attributes">
             <attribute name="class">d-none</attribute>

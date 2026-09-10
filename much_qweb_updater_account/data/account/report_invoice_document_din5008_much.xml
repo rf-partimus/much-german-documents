@@ -26,10 +26,10 @@
                 width: 5%;
                 }
                 [name=invoice_line_table] th[name=th_description] {
-                width: 43%;
+                width: 49%;
                 }
                 [name=invoice_line_table] th[name=th_quantity] {
-                width: 9%;
+                width: 13%;
                 }
                 [name=invoice_line_table] th[name=th_priceunit] {
                 width: 13%;
@@ -37,11 +37,12 @@
                 [name=invoice_line_table] th[name=th_discount] {
                 width: 7%;
                 }
-                [name=invoice_line_table] th[name=th_taxes] {
-                width: 10%;
-                }
                 [name=invoice_line_table] th[name=th_subtotal] {
                 width: 13%;
+                }
+                /* unit names must not break mid-word */
+                [name=invoice_line_table] td.o_td_quantity span {
+                white-space: nowrap;
                 }
                 [name=account_invoice_line_pos] span,
                 [name=account_invoice_line_pos_grouped] span {
@@ -191,6 +192,10 @@
         <xpath expr="//t[@t-foreach='lines_to_report']" position="before">
             <t t-set="count" t-value="0"/>
         </xpath>
+        <!-- 2026: tax column follows company flag (amounts shown in totals anyway) -->
+        <xpath expr="//t[@t-set='display_taxes']" position="attributes">
+            <attribute name="t-value">o.company_id.taxes_on_line and any(l.tax_ids for l in o.invoice_line_ids)</attribute>
+        </xpath>
         <t t-set="is_product" position="after">
             <t t-if="is_product">
                 <t t-set="count" t-value="count+1"/>
@@ -211,6 +216,12 @@
                 <span t-if="is_product" t-out="count"/>
             </td>
         </td>
+        <!-- 2026: payment terms without note (e.g. Lastschrift) fall back to the term name -->
+        <xpath expr="//span[@id='payment_terms_note_id']" position="after">
+            <span t-if="o.invoice_payment_term_id and not o.invoice_payment_term_id.note">
+                Zahlungsbedingungen: <span t-field="o.invoice_payment_term_id.name"/>
+            </span>
+        </xpath>
         <xpath expr="//p[@name='payment_communication']" position="attributes">
             <attribute name="t-if">o.company_id.print_payment_ref</attribute>
         </xpath>
