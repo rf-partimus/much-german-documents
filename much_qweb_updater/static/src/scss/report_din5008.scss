@@ -1,8 +1,29 @@
+// 2026: Manrope als Berichtsschrift (statische TTFs, wkhtmltopdf-kompatibel)
+@font-face {
+    font-family: 'Manrope';
+    font-weight: 400;
+    src: url('/much_qweb_updater/static/fonts/Manrope-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Manrope';
+    font-weight: 700;
+    src: url('/much_qweb_updater/static/fonts/Manrope-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Manrope';
+    font-weight: 800;
+    src: url('/much_qweb_updater/static/fonts/Manrope-ExtraBold.ttf') format('truetype');
+}
+
 // 2026: Header/Footer-HTML (minimal_layout) darf keine Body-Margins haben,
 // sonst skaliert wkhtmltopdf die randlosen Bilder (shrink-to-fit).
 html, body {
     margin: 0 !important;
     padding: 0 !important;
+}
+
+.din_page {
+    font-family: 'Manrope', 'Lato', sans-serif !important;
 }
 
 .din_page {

@@ -131,6 +131,17 @@
                 }
             </style>
         </xpath>
+        <!-- 2026: company/partner name bold, address without name via widget -->
+        <xpath expr="//t[@t-set='address']/div[@t-field='doc.partner_id']" position="replace">
+            <p t-if="doc.partner_id.parent_id" class="m-0 fw-bold">
+                <t t-out="doc.partner_id.parent_id.name"/>
+            </p>
+            <p class="m-0 fw-bold">
+                <t t-out="doc.partner_id.name"/>
+            </p>
+            <div t-field="doc.partner_id" class="mb-0"
+                 t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+        </xpath>
         <xpath expr="//div[@id='informations']" position="before">
             <!-- CI Title -->
             <div class="invoice-title-ci">
@@ -207,6 +218,17 @@
                 <span t-out="count"/>
             </td>
         </td>
+        <!-- 2026: first name line bold, following description lines small/gray -->
+        <xpath expr="//td[@name='td_product_name']/span[@t-field='line.name']" position="replace">
+            <t t-set="name_lines" t-value="(line.name or '').splitlines()"/>
+            <span t-if="name_lines" style="font-weight: 700;" t-out="name_lines[0]" dir="auto"/>
+            <div t-if="len(name_lines) &gt; 1" style="font-size: 8pt; color: #5A5A5A; line-height: 1.4;">
+                <t t-foreach="name_lines[1:]" t-as="name_line">
+                    <span t-out="name_line" dir="auto"/>
+                    <br t-if="not name_line_last"/>
+                </t>
+            </div>
+        </xpath>
         <td name="td_section_group_name" position="before">
             <td name="td_section_group_pos">
                 <span t-out="count"/>
