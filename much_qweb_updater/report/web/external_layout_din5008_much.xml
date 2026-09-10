@@ -23,19 +23,11 @@
                 <t t-out='primary'/>
                 !important;
                 }
-                /* 2026: header images must ignore base din5008 img rules */
-                .din_page.header .company_header img {
-                padding: 0 !important;
-                float: none !important;
-                }
-                /* 2026: full-bleed footer image */
-                .din_page.footer {
-                padding-left: 0 !important;
-                padding-right: 0 !important;
-                margin: 0 !important;
-                }
-                .din_page.footer .page_number {
-                padding-right: 10mm;
+                /* 2026: styles here reach only the body html — header/footer html need inline styles */
+                /* 2026: zero-margin paperformat ⇒ body gets DIN margins via padding */
+                .din_page.invoice_note {
+                padding-left: 20mm !important;
+                padding-right: 10mm !important;
                 }
                 /* Sender line on one line */
                 .din_company_info .address {
@@ -50,20 +42,11 @@
         <xpath expr="//table[hasclass('din_company_info', 'table-borderless')]" position="attributes">
             <attribute name="t-if">False</attribute>
         </xpath>
-        <!--   Header   Part: 2026 design — gradient bar (full bleed left) + logo/tagline right -->
+        <!--   Header   Part: 2026 design — single full-width image (gradient bar + logo).
+             Zero-margin paperformat: viewport = 210mm ⇒ wkhtmltopdf shrink-to-fit scale = 1 -->
         <xpath expr="//table[hasclass('company_header', 'table-borderless')]" position="replace">
-            <table class="company_header table-borderless" style="width: 100%; margin-top: 12mm; border-collapse: collapse;">
-                <tr>
-                    <td style="padding: 0; vertical-align: top;">
-                        <img src="/much_qweb_updater/static/img/header_bar_2026.png" alt=""
-                             style="width: 132.6mm; height: 9mm; margin-left: -20mm; display: block;"/>
-                    </td>
-                    <td style="padding: 0; vertical-align: top; text-align: right; width: 56mm;">
-                        <img src="/much_qweb_updater/static/img/logo_tagline_2026.png" alt="partimus – host local. share global."
-                             style="width: 44.1mm; height: 12mm; margin-right: 10mm;"/>
-                    </td>
-                </tr>
-            </table>
+            <img src="/much_qweb_updater/static/img/header_full_2026.png" alt="partimus – host local. share global."
+                 style="width: 210mm; height: 25.4mm; margin: 0; display: block; padding: 0; float: none;"/>
         </xpath>
         <xpath expr="//h2" position="attributes">
             <attribute name="t-if">not skip_headers and report_name not in ['account.report_invoice',
@@ -135,11 +118,21 @@
                 </t>
             </table>
         </xpath>
-        <!--  Footer Part: 2026 design — full-bleed footer image with baked-in company data -->
+        <!--  Footer Part: 2026 design — full-bleed footer image with baked-in company data.
+             Inline styles required (footer renders as separate html without the body style block). -->
+        <xpath expr="//div[contains(@t-attf-class,'footer')]" position="attributes">
+            <attribute name="style">padding: 0; margin: 0;</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class,'footer')]//div[hasclass('page_number')]" position="attributes">
+            <attribute name="style">padding-right: 10mm; margin: 0; height: 4.9mm; line-height: 4.9mm; font-size: 7pt;</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class,'footer')]//div[hasclass('company_details')]" position="attributes">
+            <attribute name="style">margin: 0; padding: 0;</attribute>
+        </xpath>
         <xpath expr="//div[contains(@t-attf-class,'footer')]//table" position="replace">
             <img src="/much_qweb_updater/static/img/footer_2026.png"
                  alt="partimus GmbH – Kontakt- und Bankdaten"
-                 style="width: 210mm; height: 35.06mm; margin-left: -20mm; display: block;"/>
+                 style="width: 210mm; height: 35.06mm; margin: 0; display: block; padding: 0;"/>
         </xpath>
     </template>
 </odoo>

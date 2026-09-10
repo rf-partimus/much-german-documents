@@ -1,3 +1,10 @@
+// 2026: Header/Footer-HTML (minimal_layout) darf keine Body-Margins haben,
+// sonst skaliert wkhtmltopdf die randlosen Bilder (shrink-to-fit).
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 .din_page {
     &.invoice_note {
         tr {

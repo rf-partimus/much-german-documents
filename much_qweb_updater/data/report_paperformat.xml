@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Randloses DIN5008-Format für das 2026-Design: Header/Footer-Bilder laufen bis
+         an die Blattkante, die DIN-Seitenränder liefert das Body-Padding im Layout. -->
+    <record id="paperformat_din5008_much_2026" model="report.paperformat">
+        <field name="name">European A4 DIN5008 partimus 2026 (randlos)</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">45</field>
+        <field name="margin_bottom">40</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="dpi">70</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">45</field>
+    </record>
+</odoo>
